@@ -14,7 +14,8 @@
     <main>
         <div class="container-fluid">
             <nav class="navbar navbar-expand-sm">
-                <a class="navbar-brand" href="Index.cshtml">
+
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     <img src="~/Images/Logo.jpg" alt="Logo" style="width:40px;">
                 </a>
 
@@ -27,7 +28,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> Login/ Register </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="">Test</a>
+                            <a class="dropdown-item" asp-area="" asp-controller="Movie" asp-action="MoviePage">Test</a>
                             <a class="dropdown-item" href="#">Link 2</a>
                             <a class="dropdown-item" href="#">Link 3</a>
                         </div>
