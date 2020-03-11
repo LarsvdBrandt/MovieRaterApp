@@ -1,0 +1,23 @@
+﻿@model IEnumerable<MovieModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<h1>Films</h1>
+<div class="row">
+
+    @foreach (var item in Model)
+    {
+        <div class="col-xl-2">
+            <img src=@item.Poster alt="Foto's" style="height:auto; width:100%; border-radius: 20px; border: 1px solid black;">
+        </div>
+    }
+
+
+    <div class="col-sm-2 ml-auto">
+        <h1>Nu in de Bioscoop</h1>
+        @foreach (var item in Model)
+        {
+            <p>@item.Title</p>
+        }
+    </div>
+</div>
