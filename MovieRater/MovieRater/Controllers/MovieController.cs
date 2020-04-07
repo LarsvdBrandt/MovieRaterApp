@@ -10,6 +10,8 @@ namespace MovieRater.Controllers
     {
         public IActionResult MoviePage()
         {
+            
+
             return View();
         }
     }
