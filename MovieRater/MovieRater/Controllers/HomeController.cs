@@ -6,20 +6,25 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MovieRater.Models;
+using MovieRater.Data;
 
 namespace MovieRater.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private MRContext db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, MRContext db)
         {
             _logger = logger;
+            this.db = db;
         }
 
         public IActionResult Index()
         {
+
+            /*
             MovieModel homeImage = new MovieModel()
             {
                 MovieId = 1,
@@ -53,6 +58,10 @@ namespace MovieRater.Controllers
             List<MovieModel> MovieModels = new List<MovieModel>() { homeImage, homeImage2, homeImage3, homeImage4 };
 
             return View(MovieModels);
+            */
+
+            List<MovieModel> movieModels = db.GetMovieModels();
+            return View(movieModels);
             
         }
 

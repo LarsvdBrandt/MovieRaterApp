@@ -9,7 +9,7 @@
     {
     <div class="col-xl-2">
             <img src=@item.Poster alt="Foto's" style="height:auto; width:100%; border-radius: 20px; border: 1px solid black;">
-        <p><a href='@string.Format("/Movie/MoviePage?id={0}", item.MovieId)' class="btn btn-login btn-md">Klik Hier!</a></p>
+        <p><a href='@string.Format("/Movie/MoviePage?id={0}", item.MovieID)' class="btn btn-login btn-md">Klik Hier!</a></p>
     </div>
     }
 
@@ -18,7 +18,7 @@
         <h1>Nu in de Bioscoop</h1>
         @foreach (var item in Model)
         {
-            <p>@item.Title</p>
+            <p>@item.MovieTitle</p>
         }
     </div>
 </div>

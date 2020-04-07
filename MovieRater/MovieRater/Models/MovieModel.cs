@@ -8,14 +8,11 @@ namespace MovieRater.Models
 {
     public class MovieModel
     {
-        [Key]
-        public int MovieId { get; set; }
+        public int MovieID { get; set; }
         public string Poster { get; set; }
-
-        [Required]
-        [StringLength(250)]
-        [Display(Name = "Film titel")]
-        public string Title { get; set; }
+        public string MovieTitle { get; set; }
+        public string MovieInfo { get; set; }
+        public string MovieSummary { get; set; }
     }
 
 }
