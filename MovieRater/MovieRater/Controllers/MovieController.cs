@@ -3,14 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MovieRater.Data;
+using MovieRater.Models;
+using MovieRater.Controllers;
 
 namespace MovieRater.Controllers
 {
     public class MovieController : Controller
     {
-        public IActionResult MoviePage()
+        private MRContext db;
+
+        public MovieController(MRContext db)
         {
-            return View();
+            this.db = db;
+        }
+
+        public IActionResult MoviePage(int movieID)
+        {
+            List<MovieModel> movieModels = db.GetMovieModels().Where(x => x.MovieID == movieID).ToList();
+            return View(movieModels[0]);
+
+
         }
     }
 }
