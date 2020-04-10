@@ -9,31 +9,54 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            position: relative;
+            padding-bottom: 150px;
+            min-height: 100vh;
+        }
+
+        footer {
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .carousel-inner img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
     <main>
-        <div class="container-fluid">
-            <nav class="navbar navbar-expand-sm">
-
+        <div class="container">
+            <nav class="navbar navbar-light bg-lignt navbar-expand-sm" style="padding: 1px; ">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     <img src="~/Images/Logo.jpg" alt="Logo" style="width:40px;">
                 </a>
 
-                <form class="form-inline" action="/action_page.php">
-                    <input class="form-control mr-sm-" type="text" placeholder="Search" style="width:600px;">
-                </form>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse my-toggler" id="collapsibleNavbar">
 
+                    <form class="form-inline" action="/action_page.php">
+                        <input class="form-control mr-sm-" type="text" placeholder="Search" style="width:300px;">
+                    </form>
 
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> Login/ Register </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" asp-area="" asp-controller="Movie" asp-action="MoviePage">Test</a>
-                            <a class="dropdown-item" href="#">Link 2</a>
-                            <a class="dropdown-item" href="#">Link 3</a>
-                        </div>
-                    </li>
-                </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> Login/ Register </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-area="" asp-controller="Movie" asp-action="MoviePage">Test</a>
+                                <a class="dropdown-item" href="#">Link 2</a>
+                                <a class="dropdown-item" href="#">Link 3</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </nav>
             <hr />
             <br>
@@ -42,9 +65,12 @@
         </div>
 
     </main>
-    <footer class="container-fluid">
+
+    <footer class="footer">
         <hr />
-        <p class="copyright text-muted">Copyright © Lars 2020</p>
+        <div class="container text-center">
+            <span class="copyright">Copyright © Lars van den Brandt 2020</span>
+        </div>
     </footer>
 </body>
 </html>

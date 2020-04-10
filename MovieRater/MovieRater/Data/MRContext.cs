@@ -38,7 +38,11 @@ namespace MovieRater.Data
                         MovieTitle = reader.GetString(1),
                         MovieInfo = reader.GetString(2),
                         MovieSummary = reader.GetString(3),
-                        Poster = reader.GetString(4)
+                        Poster = reader.GetString(4),
+                        Trailer = reader.GetString(5),
+                        Writers = reader.GetString(6),
+                        Stars = reader.GetString(7),
+                        Director = reader.GetString(8)
                     });
                         
                 }

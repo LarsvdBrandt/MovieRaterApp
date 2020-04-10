@@ -3,7 +3,7 @@
     ViewData["Title"] = "MoviePage";
 }
 
-<div class="container-fluid">
+<div class="container">
     <div class="row">
         <div class="col">
             <b class="text-dark">@Html.ActionLink("Terug naar overzicht", "Index", "Home")</b>
@@ -15,5 +15,37 @@
         </div>
     </div>
     <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <img class="rounded img-fluid" style="max-width: 90%" src=@Model.Poster alt="Poster">
+        </div>
+        <div class="col-5">
+            <div>
+                <h3>Samenvatting</h3>
+                <p>@Model.MovieSummary</p>
+            </div>
+            <div style="position:absolute; bottom:0;">
+                <p> <strong>Directors: </strong> @Model.Director</p> 
+                <p> <strong>Writers: </strong> @Model.Writers</p> 
+                <p> <strong>Stars: </strong> @Model.Stars</p> 
+            </div>
+        </div>
+        <div class="col-2">
+            <div>
+                <a href="#" class="btn btn-primary active" role="button" style="width:280px">Toevoegen aan watchlist</a>
+            </div>
+            <br />
+            <div>
+                <a href="#" class="btn btn-primary active" role="button" style="width:280px">Beoordeel film</a>
+            </div>
+
+
+            <div style="position:absolute; bottom:0;">
+                <h3>Trailer</h3>
+                <iframe width="280" height="157" class="rounded" src="@Model.Trailer" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
 </div>
 

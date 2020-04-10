@@ -13,6 +13,10 @@ namespace MovieRater.Models
         public string MovieTitle { get; set; }
         public string MovieInfo { get; set; }
         public string MovieSummary { get; set; }
+        public string Trailer { get; set; }
+        public string Writers { get; set; }
+        public string Stars { get; set; }
+        public string Director { get; set; }
     }
 
 }
