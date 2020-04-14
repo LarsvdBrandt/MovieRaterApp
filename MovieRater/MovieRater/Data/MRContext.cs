@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using MovieRater.Models;
+using System.IO;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MovieRater.Data
 {
@@ -21,10 +23,10 @@ namespace MovieRater.Data
             return new MySqlConnection(ConnectionString);
         }
 
-        public List<MovieModel> GetMovieModels()
+        public List<MovieViewModel> GetMovieModels()
         {
             string command = "select * from movie;";
-            List<MovieModel> movieModels = new List<MovieModel>();
+            List<MovieViewModel> movieModels = new List<MovieViewModel>();
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
@@ -32,7 +34,7 @@ namespace MovieRater.Data
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    movieModels.Add(new MovieModel()
+                    movieModels.Add(new MovieViewModel()
                     {
                         MovieID = reader.GetInt32(0),
                         MovieTitle = reader.GetString(1),
@@ -44,10 +46,11 @@ namespace MovieRater.Data
                         Stars = reader.GetString(7),
                         Director = reader.GetString(8)
                     });
-                        
+
                 }
             }
             return movieModels;
         }
+
     }
 }

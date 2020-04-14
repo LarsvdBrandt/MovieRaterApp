@@ -60,7 +60,7 @@ namespace MovieRater.Controllers
             return View(MovieModels);
             */
 
-            List<MovieModel> movieModels = db.GetMovieModels();
+            List<MovieViewModel> movieModels = db.GetMovieModels();
             return View(movieModels);
             
         }

@@ -20,7 +20,7 @@ namespace MovieRater.Controllers
 
         public IActionResult MoviePage(int movieID)
         {
-            List<MovieModel> movieModels = db.GetMovieModels().Where(x => x.MovieID == movieID).ToList();
+            List<MovieViewModel> movieModels = db.GetMovieModels().Where(x => x.MovieID == movieID).ToList();
             return View(movieModels[0]);
 
 
