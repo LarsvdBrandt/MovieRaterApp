@@ -51,6 +51,5 @@ namespace MovieRater.Data
             }
             return movieModels;
         }
-
     }
 }

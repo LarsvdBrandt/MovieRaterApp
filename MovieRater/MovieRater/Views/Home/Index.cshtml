@@ -381,15 +381,3 @@
         </div>
     </div>
 </div>
-<br />
-<br />
-<hr />
-<div class="row">
-    <div class="col-sm-2 ">
-        <h2>Nu in de Bioscoop</h2>
-        @foreach (var item in Model)
-        {
-            <a href='@string.Format("/Movie/MoviePage?MovieID={0}", item.MovieID)' class="btn btn-login btn-md"><p>@item.MovieTitle</p></a>
-        }
-    </div>
-</div>

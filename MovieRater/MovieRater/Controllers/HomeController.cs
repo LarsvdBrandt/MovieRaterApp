@@ -23,43 +23,6 @@ namespace MovieRater.Controllers
 
         public IActionResult Index()
         {
-
-            /*
-            MovieModel homeImage = new MovieModel()
-            {
-                MovieId = 1,
-                Poster = "/Images/1917.jpg",
-                Title = "1917"
-
-                //ImageHoofd = new List<string>() { "/Images/1917.jpg", "/Images/BadBoysForLife.jpg", "/Images/MySpy.jpg", "/Images/BloodShot.jpg" },
-                //TitleHoofd = new List<string>() { "Bad Boys For Life", "1917", "My Spy", "Bloodshot", "Suriname", "Sonic", "The Boy", "Queen & Slim"}
-            };            
-            
-            MovieModel homeImage2 = new MovieModel()
-            {
-                MovieId = 2,
-                Poster = "/Images/BadBoysForLife.jpg",
-                Title = "BadBoysForLife"
-            };
-
-            MovieModel homeImage3 = new MovieModel()
-            {
-                MovieId = 3,
-                Poster = "/Images/MySpy.jpg",
-                Title = "MySpy"
-            };
-
-            MovieModel homeImage4 = new MovieModel()
-            {
-                MovieId = 4,
-                Poster = "/Images/BloodShot.jpg",
-                Title = "BloodShot"
-            };
-            List<MovieModel> MovieModels = new List<MovieModel>() { homeImage, homeImage2, homeImage3, homeImage4 };
-
-            return View(MovieModels);
-            */
-
             List<MovieViewModel> movieModels = db.GetMovieModels();
             return View(movieModels);
             

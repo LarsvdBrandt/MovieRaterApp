@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewData["Title"] = "Register";
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+}
+
+<div class="card bg-light">
+    <article class="card-body mx-auto" style="max-width: 400px;">
+        <h4 class="card-title mt-3 text-center">Registreer</h4>
+        <form>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input name="" class="form-control" placeholder="Voornaam" type="text">
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <div class="form-group input-group">
+                        <input name="" class="form-control" placeholder="Achternaam" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                </div>
+                <input name="" class="form-control" placeholder="Email adres" type="email">
+            </div>
+
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                </div>
+                <select class="custom-select" style="max-width: 80px;">
+                    <option selected="">+31</option>
+                    <option value="1">+49</option>
+                    <option value="2">+32</option>
+                </select>
+                <input name="" class="form-control" placeholder="Telefoon nummer" type="text">
+            </div>
+
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                </div>
+                <input class="form-control" placeholder="Wachtwoord" type="password">
+            </div>
+
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                </div>
+                <input class="form-control" placeholder="Herhaal password" type="password">
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block"> Registreer  </button>
+            </div>
+
+            <p class="text-center">Heeft u al een account? <a asp-controller="Account" asp-action="Login">Log In</a> </p>
+        </form>
+    </article>
+</div>

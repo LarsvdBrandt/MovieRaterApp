@@ -22,8 +22,11 @@ namespace MovieRater.Controllers
         {
             List<MovieViewModel> movieModels = db.GetMovieModels().Where(x => x.MovieID == movieID).ToList();
             return View(movieModels[0]);
+        }
 
-
+        public IActionResult AddMovie()
+        {
+            return View();
         }
     }
 }
