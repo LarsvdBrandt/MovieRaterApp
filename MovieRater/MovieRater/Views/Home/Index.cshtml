@@ -358,12 +358,13 @@
         });
     });</script>
 
-<section class="items ">
+
+<section class="items" style="margin-bottom: auto; margin-top: auto">
     <div class="carouselOfImages">
         @foreach (var item in Model)
         {
             <div class="carouselImage" style="background-size:cover;">
-                <a href='@string.Format("/Movie/MoviePage?MovieID={0}", item.MovieID)'><img data-tab="bright" class="rounded" src=@item.Poster alt="Poster"></a>
+                <a href='@string.Format("/Movie/MoviePage?MovieID={0}", item.MovieID)'><img data-tab="bright" class="rounded" src=/Images/Posters/@item.Poster alt="Poster"></a>
             </div>
         }
     </div>

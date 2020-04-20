@@ -13,7 +13,9 @@ namespace MovieRater.Models
         public int MovieID { get; set; }
 
         [Display(Name = "Foto")]
-        public ICollection<IFormFile> Poster { get; set; }
+        public string Poster { get; set; }
+
+        public ICollection<IFormFile> Files { get; set; }
 
         [Display(Name = "Titel")]
         public string MovieTitle { get; set; }

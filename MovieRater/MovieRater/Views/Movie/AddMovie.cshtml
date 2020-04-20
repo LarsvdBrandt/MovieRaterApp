@@ -2,11 +2,8 @@
 @{
     ViewData["Title"] = "AddMovie";
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- Google Maps JavaScript library -->
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyCMGzFaY4NywUNBSz80pFEuncUHgze1uQo"></script>
 
 }
-
 <div id="AddMovie">
     <div class="container">
         <div id="AddMovie-row" class="row justify-content-center align-items-center">
@@ -67,22 +64,4 @@
         </div>
     </div>
 </div>
-<!-- Autocomplete location search input -->
-<script>
-    var searchInput = 'search_input';
-
-    $(document).ready(function () {
-        var autocomplete;
-        autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
-            types: ['geocode'],
-            /*componentRestrictions: {
-             country: "Netherlands"
-            }*/
-        });
-
-        google.maps.event.addListener(autocomplete, 'place_changed', function () {
-            var near_place = autocomplete.getPlace();
-        });
-    });
-</script>
 
