@@ -25,8 +25,15 @@ namespace MovieRater.Controllers
 
         public IActionResult MoviePage(int movieID)
         {
-            List<MovieViewModel> movieModels = db.GetMovieModels().Where(x => x.MovieID == movieID).ToList();
-            return View(movieModels[0]);
+            RatingViewModel ratingViewModel = new RatingViewModel();
+            List<MovieViewModel> movieViewModels = db.GetMovieModels().Where(x => x.MovieID == movieID).ToList();
+            MovieViewModel currentMovie = movieViewModels[0];
+
+            List<Rating> ratings = db.GetRatingViewModels().Where(x => x.MovieID == movieID).ToList();
+
+            ratingViewModel.MovieViewModel = currentMovie;
+            ratingViewModel.Ratings = ratings;
+            return View(ratingViewModel);
         }
 
 
@@ -65,6 +72,30 @@ namespace MovieRater.Controllers
             realmodel.Director = model.Director;
             db.AddMovie(realmodel);
             return RedirectToAction("Index", "Home", "");
+        }
+
+        public IActionResult RatingPage(int movieID)
+        {
+            Rating rating = new Rating();
+            rating.MovieID = movieID;
+
+            return View(rating);
+        }
+
+        [HttpPost]
+        public IActionResult AddRating(Rating rating, int movieID)
+        {
+            List<MovieViewModel> movieModels = db.GetMovieModels().Where(x => x.MovieID == movieID).ToList();
+            MovieViewModel currentMovie = movieModels[0];
+
+            if (ModelState.IsValid)
+            {
+                db.AddRating(rating);
+                return RedirectToAction("Index", "Home", "");
+            }
+
+            else
+                return RedirectToAction("Login", "Account", "");
         }
 
     }

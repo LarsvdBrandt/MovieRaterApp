@@ -1,4 +1,4 @@
-﻿@model MovieViewModel
+﻿@model RatingViewModel
 @{
     ViewData["Title"] = "MoviePage";
 }
@@ -11,23 +11,23 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <h1>@Model.MovieTitle</h1>
+            <h1>@Model.MovieViewModel.MovieTitle</h1>
         </div>
     </div>
     <hr />
     <div class="row">
         <div class="col-md-4">
-            <img class="rounded img-fluid" style="max-width: 90%" src=/Images/Posters/@Model.Poster alt="Poster">
+            <img class="rounded img-fluid" style="max-width: 90%" src=/Images/Posters/@Model.MovieViewModel.Poster alt="Poster">
         </div>
         <div class="col-md-5">
             <div>
                 <h3>Samenvatting</h3>
-                <p>@Model.MovieSummary</p>
+                <p>@Model.MovieViewModel.MovieSummary</p>
             </div>
             <div style="position:absolute; bottom:0;">
-                <p> <strong>Directors: </strong> @Model.Director</p> 
-                <p> <strong>Writers: </strong> @Model.Writers</p> 
-                <p> <strong>Stars: </strong> @Model.Stars</p> 
+                <p> <strong>Directors: </strong> @Model.MovieViewModel.Director</p>
+                <p> <strong>Writers: </strong> @Model.MovieViewModel.Writers</p>
+                <p> <strong>Stars: </strong> @Model.MovieViewModel.Stars</p>
             </div>
         </div>
         <div class="col-md-2">
@@ -36,15 +36,62 @@
             </div>
             <br />
             <div>
-                <a href="#" class="btn btn-primary active" role="button" style="width:280px">Beoordeel film</a>
+                <a href='@string.Format("/Movie/RatingPage?MovieID={0}", Model.MovieViewModel.MovieID)' class="btn btn-primary active" role="button" style="width:280px">Beoordeel film</a>
             </div>
 
             <div style="position:absolute; bottom:0;">
                 <h3>Trailer</h3>
-                <iframe width="280" height="157" class="rounded" src="@Model.Trailer" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="280" height="157" class="rounded" src="@Model.MovieViewModel.Trailer" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
     </div>
-
 </div>
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Feedback</h1>
+            @foreach (var item in Model.Ratings)
+            {
+                int caseswitch = item.RatingStars;
+                switch (caseswitch)
+                {
+                    case 1:
+                        <p style="font-weight:bold;">
+                            <img src="~/Images/Stars/1-star.jpg" alt="Logo" style="width:90px;"> @item.RatingTitle
+                        </p>
+                        break;
+                    case 2:
+
+                        <p style="font-weight:bold;">
+                            <img src="~/Images/Stars/2-star.jpg" alt="Logo" style="width:90px;"> @item.RatingTitle
+                        </p>
+                        break;
+                    case 3:
+
+                        <p style="font-weight:bold;">
+                            <img src="~/Images/Stars/2-star.jpg" alt="Logo" style="width:90px;"> @item.RatingTitle
+                        </p>
+                        break;
+                    case 4:
+
+                        <p style="font-weight:bold;">
+                            <img src="~/Images/Stars/4-star.jpg" alt="Logo" style="width:90px;"> @item.RatingTitle
+                        </p>
+                        break;
+                    case 5:
+
+                        <p style="font-weight:bold;">
+                            <img src="~/Images/Stars/5-star.jpg" alt="Logo" style="width:90px;"> @item.RatingTitle
+                        </p>
+                        break;
+                }
+                <p>Commentaar: @item.RatingComment</p>
+                <hr />
+            }
+        </div>
+    </div>
+</div>
+
 

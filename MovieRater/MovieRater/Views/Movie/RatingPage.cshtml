@@ -1,0 +1,108 @@
+﻿@model Rating
+@{
+    ViewData["Title"] = "RatingPage";
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .rate {
+            float: left;
+            height: 46px;
+            padding: 0 10px;
+        }
+
+            .rate:not(:checked) > input {
+                position: absolute;
+                top: -9999px;
+            }
+
+            .rate:not(:checked) > label {
+                float: right;
+                width: 1em;
+                overflow: hidden;
+                white-space: nowrap;
+                cursor: pointer;
+                font-size: 30px;
+                color: #ccc;
+            }
+
+                .rate:not(:checked) > label:before {
+                    content: '★ ';
+                }
+
+            .rate > input:checked ~ label {
+                color: #ffc700;
+            }
+
+            .rate:not(:checked) > label:hover,
+            .rate:not(:checked) > label:hover ~ label {
+                color: #deb217;
+            }
+
+            .rate > input:checked + label:hover,
+            .rate > input:checked + label:hover ~ label,
+            .rate > input:checked ~ label:hover,
+            .rate > input:checked ~ label:hover ~ label,
+            .rate > label:hover ~ input:checked ~ label {
+                color: #c59b08;
+            }
+    </style>
+}
+
+<div id="AddRating">
+    <div class="container">
+        <div id="AddRating-row" class="row justify-content-center align-items-center">
+            <div id="AddRating-column" class="col-md-6">
+                <div id="AddRating-box" class="col-md-12">
+                    <form id="AddRating-form" class="form" asp-action="AddRating" enctype="multipart/form-data">
+                        <h1>Beoordeel film</h1>
+                        <hr />
+                        @Html.HiddenFor(m => Model.MovieID)
+
+                        <div class="form-group">
+                            <label asp-for="RatingTitle" class="control-label"></label>
+                            <input asp-for="RatingTitle" class="form-control" placeholder="Onderwerp.." />
+                            <span asp-validation-for="RatingTitle" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="RatingStars" class="control-label"></label>
+                            <br />
+                            <div class="rate">
+                                <input type="radio" id="star5" name="RatingStars" value="5" required />
+                                <label for="star5" title="Fantastisch">5</label>
+                                <input type="radio" id="star4" name="RatingStars" value="4" required />
+                                <label for="star4" title="Goed">4</label>
+                                <input type="radio" id="star3" name="RatingStars" value="3" required />
+                                <label for="star3" title="Wel oké">3</label>
+                                <input type="radio" id="star2" name="RatingStars" value="2" required />
+                                <label for="star2" title="Matig">2</label>
+                                <input type="radio" id="star1" name="RatingStars" value="1" required />
+                                <label for="star1" title="Slecht">1</label>
+                                <span asp-validation-for="RatingStars" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+
+                        <div class="form-group">
+                            <label asp-for="RatingComment" class="control-label"></label>
+                            <input asp-for="RatingComment" class="form-control" placeholder="Commentaar.." />
+                            <span asp-validation-for="RatingComment" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="Verstuur" class="btn btn-primary active" style="width:100%" />
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
