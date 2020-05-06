@@ -1,0 +1,65 @@
+﻿@model MovieRater.Models.EditMovieViewModel
+@{
+    ViewData["Title"] = "EditMoviePage";
+
+}
+<div id="AddMovie">
+    <div class="container">
+        <div id="AddMovie-row" class="row justify-content-center align-items-center">
+            <div id="AddMovie-column" class="col-md-6">
+                <div id="AddMovie-box" class="col-md-12">
+                    <form id="AddMovie-form" class="form" asp-action="AddMovie" enctype="multipart/form-data">
+                        <h1>Voeg film toe</h1>
+                        <hr />
+                        <div class="form-group">
+                            <label asp-for="MovieTitle" class="control-label"></label>
+                            <input asp-for="MovieTitle" class="form-control" placeholder="Film titel.." />
+                            <span asp-validation-for="MovieTitle" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="MovieSummary" class="control-label"></label>
+                            <textarea asp-for="MovieSummary" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Samenvatting.."></textarea>
+                            <span asp-validation-for="MovieSummary" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Director" class="control-label"></label>
+                            <input asp-for="Director" type="text" class="form-control" id="search_input" placeholder="Director..." />
+                            <span asp-validation-for="Director" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Writers" class="control-label"></label>
+                            <input asp-for="Writers" class="form-control" placeholder="Schrijvers.." />
+                            <span asp-validation-for="Writers" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Stars" class="control-label"></label>
+                            <input asp-for="Stars" class="form-control" placeholder="Acteurs.." />
+                            <span asp-validation-for="Stars" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Trailer" class="control-label"></label>
+                            <input asp-for="Trailer" class="form-control" placeholder="Link naar YouTube.." />
+                            <span asp-validation-for="Trailer" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Poster" class="control-label"></label>
+                            <input asp-for="Poster" type="file" name="files" multiple />
+                            <span asp-validation-for="Poster" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Maak aan" class="btn btn-primary active" style="width:100%" />
+                        </div>
+                        <a asp-controller="Home" asp-action="Index">Terug naar homepagina</a>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

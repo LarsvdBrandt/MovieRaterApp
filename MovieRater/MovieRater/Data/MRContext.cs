@@ -66,6 +66,19 @@ namespace MovieRater.Data
             }
         }
 
+        public void EditMovie(MovieViewModel model)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string command = "INSERT INTO movie (MovieID,MovieTitle,MovieInfo,MovieSummary,Poster,Trailer,Writers,Stars,Director) " +
+                    "values ({0}, '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}')";
+                MySqlCommand cmd = new MySqlCommand(string.Format(command, model.MovieID, model.MovieTitle, model.MovieInfo, model.MovieSummary,
+                                                    model.Poster, model.Trailer, model.Writers, model.Stars, model.Director), conn);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         public void AddRating(Rating model)
         {
             using (MySqlConnection conn = GetConnection())
