@@ -62,22 +62,33 @@ namespace MovieRater.Data
                     "values ({0}, '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}')";
                 MySqlCommand cmd = new MySqlCommand(string.Format(command, model.MovieID, model.MovieTitle, model.MovieInfo, model.MovieSummary,
                                                     model.Poster, model.Trailer, model.Writers, model.Stars, model.Director), conn);
-                    cmd.ExecuteNonQuery();
-            }
-        }
-
-        public void EditMovie(MovieViewModel model)
-        {
-            using (MySqlConnection conn = GetConnection())
-            {
-                conn.Open();
-                string command = "INSERT INTO movie (MovieID,MovieTitle,MovieInfo,MovieSummary,Poster,Trailer,Writers,Stars,Director) " +
-                    "values ({0}, '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}')";
-                MySqlCommand cmd = new MySqlCommand(string.Format(command, model.MovieID, model.MovieTitle, model.MovieInfo, model.MovieSummary,
-                                                    model.Poster, model.Trailer, model.Writers, model.Stars, model.Director), conn);
                 cmd.ExecuteNonQuery();
             }
         }
+        public void EditMovie(EditMovieViewModel model)
+        {
+            string command = "UPDATE movie SET MovieID='{0}',MovieTitle='{1}',MovieInfo='{2}',MovieSummary='{3}',Poster='{4}',Trailer='{5}',Writers='{6}',Stars='{7}',Director='{8}' WHERE MovieID='{9}';";
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(string.Format(command, model.MovieID, model.MovieTitle, model.MovieInfo, model.MovieSummary, model.Poster, model.Trailer, model.Writers, model.Stars, model.Director, model.MovieID), conn);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void DeleteMovie(EditMovieViewModel model)
+        {
+            string command = "DELETE FROM movie WHERE MovieID='{0}';";
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(string.Format(command, model.MovieID), conn);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
 
         public void AddRating(Rating model)
         {
@@ -86,7 +97,7 @@ namespace MovieRater.Data
                 conn.Open();
                 string command = "INSERT INTO rating (RatingID,MovieID,RatingStars,RatingTitle,RatingComment) " +
                     "values ({0}, '{1}', '{2}', '{3}', '{4}')";
-                MySqlCommand cmd = new MySqlCommand(string.Format(command, model.RatingID, model.MovieID, model.RatingStars, 
+                MySqlCommand cmd = new MySqlCommand(string.Format(command, model.RatingID, model.MovieID, model.RatingStars,
                     model.RatingTitle, model.RatingComment), conn);
                 cmd.ExecuteNonQuery();
             }

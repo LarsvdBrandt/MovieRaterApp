@@ -3,14 +3,20 @@
     ViewData["Title"] = "EditMoviePage";
 
 }
-<div id="AddMovie">
+<div id="EditMovie">
     <div class="container">
-        <div id="AddMovie-row" class="row justify-content-center align-items-center">
-            <div id="AddMovie-column" class="col-md-6">
-                <div id="AddMovie-box" class="col-md-12">
-                    <form id="AddMovie-form" class="form" asp-action="AddMovie" enctype="multipart/form-data">
-                        <h1>Voeg film toe</h1>
+        <div id="EditMovie-row" class="row justify-content-center align-items-center">
+            <div id="EditMovie-column" class="col-md-6">
+                <div id="EditMovie-box" class="col-md-12">
+                    <form id="EditMovie-form" class="form" asp-action="EditMovieCaller" enctype="multipart/form-data">
+                        <h1>Wijzig film toe</h1>
                         <hr />
+                        <div class="form-group" style="display:none;">
+                            <label asp-for="MovieID" class="control-label"></label>
+                            <input asp-for="MovieID" class="form-control" placeholder="Film titel.." />
+                            <span asp-validation-for="MovieID" class="text-danger"></span>
+                        </div>
+
                         <div class="form-group">
                             <label asp-for="MovieTitle" class="control-label"></label>
                             <input asp-for="MovieTitle" class="form-control" placeholder="Film titel.." />
@@ -49,11 +55,13 @@
 
                         <div class="form-group">
                             <label asp-for="Poster" class="control-label"></label>
-                            <input asp-for="Poster" type="file" name="files" multiple />
-                            <span asp-validation-for="Poster" class="text-danger"></span>
+                            <input asp-for="Poster" class="form-control" />
+                            <span asp-validation-for="Trailer" class="text-danger"></span>
+                            <input asp-for="Files" type="file" name="Files" multiple />
+                            <span asp-validation-for="Files" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <input type="submit" value="Maak aan" class="btn btn-primary active" style="width:100%" />
+                            <input type="submit" value="Werk bij" class="btn btn-primary active" style="width:100%"/>
                         </div>
                         <a asp-controller="Home" asp-action="Index">Terug naar homepagina</a>
 

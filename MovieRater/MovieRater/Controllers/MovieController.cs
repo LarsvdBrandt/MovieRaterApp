@@ -22,6 +22,17 @@ namespace MovieRater.Controllers
             this.db = db;
             this._environment = environment;
         }
+        public IActionResult EditMovieCaller(EditMovieViewModel movie)
+        {
+            db.EditMovie(movie);
+            return View("EditSuccessPage");
+        }
+
+        public IActionResult DeleteMovieCaller(EditMovieViewModel movie)
+        {
+            db.DeleteMovie(movie);
+            return View("EditSuccessPage");
+        }
 
         public IActionResult MoviePage(int movieID)
         {
@@ -80,6 +91,52 @@ namespace MovieRater.Controllers
             return RedirectToAction("Index", "Home", "");
         }
 
+        public IActionResult DeleteMoviePage(int movieID)
+        {
+            List<MovieViewModel> movieModels = db.GetMovieModels().Where(x => x.MovieID == movieID).ToList();
+            MovieViewModel model = movieModels[0];
+            EditMovieViewModel realmodel = new EditMovieViewModel();
+            realmodel.MovieID = model.MovieID;
+            realmodel.MovieInfo = model.MovieInfo;
+            realmodel.MovieSummary = model.MovieSummary;
+            realmodel.MovieTitle = model.MovieTitle;
+            realmodel.Stars = model.Stars;
+            realmodel.Trailer = model.Trailer;
+            realmodel.Writers = model.Writers;
+            realmodel.Director = model.Director;
+            realmodel.Poster = model.Poster;
+
+            return View(realmodel);
+        }
+
+        public IActionResult DeleteMovie(EditMovieViewModel model, int movieID)
+        {
+            List<MovieViewModel> movieViewModels = db.GetMovieModels().Where(x => x.MovieID == movieID).ToList();
+            MovieViewModel realmodel = new MovieViewModel();
+            if (ModelState.IsValid)
+            {
+                realmodel.MovieID = model.MovieID;
+                realmodel.MovieInfo = model.MovieInfo;
+                realmodel.MovieSummary = model.MovieSummary;
+                realmodel.MovieTitle = model.MovieTitle;
+                realmodel.Stars = model.Stars;
+                realmodel.Trailer = model.Trailer;
+                realmodel.Writers = model.Writers;
+                realmodel.Director = model.Director;
+                if (model.Poster == null)
+                {
+                    realmodel.Poster = model.Poster;
+                }
+
+                List<MovieViewModel> movieModels = db.GetMovieModels().Where(x => x.MovieID == movieID).ToList();
+                return RedirectToAction("MoviePage", new { realmodel.MovieID });
+            }
+            else
+            {
+                return View("FailPage");
+            }
+        }
+
         public IActionResult RatingPage(int movieID)
         {
             Rating rating = new Rating();
@@ -105,11 +162,11 @@ namespace MovieRater.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditMoviePage(EditMovieViewModel model, int movieID)
+        public IActionResult EditMoviePage(int movieID)
         {
             List<MovieViewModel> movieModels = db.GetMovieModels().Where(x => x.MovieID == movieID).ToList();
-            MovieViewModel currentMovie = movieModels[0];
-            MovieViewModel realmodel = new MovieViewModel();
+            MovieViewModel model = movieModels[0];
+            EditMovieViewModel realmodel = new EditMovieViewModel();
             realmodel.MovieID = model.MovieID;
             realmodel.MovieInfo = model.MovieInfo;
             realmodel.MovieSummary = model.MovieSummary;
@@ -118,6 +175,7 @@ namespace MovieRater.Controllers
             realmodel.Trailer = model.Trailer;
             realmodel.Writers = model.Writers;
             realmodel.Director = model.Director;
+            realmodel.Poster = model.Poster;
 
             return View(realmodel);
         }
@@ -159,7 +217,6 @@ namespace MovieRater.Controllers
 
                 List<MovieViewModel> movieModels = db.GetMovieModels().Where(x => x.MovieID == movieID).ToList();
                 MovieViewModel oldMovie = movieModels[0];
-                //db.Entry(oldMovie).CurrentValues.SetValue(realmodel);
                 return RedirectToAction("MoviePage", new { realmodel.MovieID });
             }
             else

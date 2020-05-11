@@ -43,6 +43,10 @@
             <div>
                 <a href='@string.Format("/Movie/EditMoviePage?MovieID={0}", Model.MovieViewModel.MovieID)' class="btn btn-primary active" role="button" style="width:280px">Wijzig film</a>
             </div>
+            <br />  
+            <div>
+                <a href='@string.Format("/Movie/DeleteMoviePage?MovieID={0}", Model.MovieViewModel.MovieID)' class="btn btn-danger active" role="button" style="width:280px">Verwijder film</a>
+            </div>
 
             <div>
                 <h3>Trailer</h3>
@@ -76,7 +80,7 @@
                     case 3:
 
                         <p style="font-weight:bold;">
-                            <img src="~/Images/Stars/2-star.jpg" alt="Logo" style="width: 90px;"> @item.RatingTitle
+                            <img src="~/Images/Stars/3-star.jpg" alt="Logo" style="width: 90px;"> @item.RatingTitle
                         </p>
                         break;
                     case 4:
