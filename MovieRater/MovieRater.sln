@@ -3,7 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieRater", "MovieRater\MovieRater.csproj", "{B13720DA-1C87-46BA-ACC0-9270ADFE7954}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieRater", "MovieRater\MovieRater.csproj", "{B13720DA-1C87-46BA-ACC0-9270ADFE7954}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataHandler", "DataHandler\DataHandler.csproj", "{6D46184C-2CC6-4411-880F-F03EA3498DB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataHandlerFactory", "DataHandlerFactory\DataHandlerFactory.csproj", "{527E832F-8C18-4D95-9C2A-92611E3D5056}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataHandlerInterfaces", "DataHandlerInterfaces\DataHandlerInterfaces.csproj", "{FB77CA96-4957-4921-BAB3-397B623C3BAD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "LOGIC\Logic.csproj", "{40ADB40E-5723-4065-8E33-D74D296FDE30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicFactory", "LogicFactory\LogicFactory.csproj", "{7D142544-329D-45AE-AC2C-5C31EF616D4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicInterfaces", "LogicInterfaces\LogicInterfaces.csproj", "{EDEFB27A-B664-4000-B7D7-663F5A859DE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +27,30 @@ Global
 		{B13720DA-1C87-46BA-ACC0-9270ADFE7954}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B13720DA-1C87-46BA-ACC0-9270ADFE7954}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B13720DA-1C87-46BA-ACC0-9270ADFE7954}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D46184C-2CC6-4411-880F-F03EA3498DB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D46184C-2CC6-4411-880F-F03EA3498DB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D46184C-2CC6-4411-880F-F03EA3498DB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D46184C-2CC6-4411-880F-F03EA3498DB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{527E832F-8C18-4D95-9C2A-92611E3D5056}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{527E832F-8C18-4D95-9C2A-92611E3D5056}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{527E832F-8C18-4D95-9C2A-92611E3D5056}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{527E832F-8C18-4D95-9C2A-92611E3D5056}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB77CA96-4957-4921-BAB3-397B623C3BAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB77CA96-4957-4921-BAB3-397B623C3BAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB77CA96-4957-4921-BAB3-397B623C3BAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB77CA96-4957-4921-BAB3-397B623C3BAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40ADB40E-5723-4065-8E33-D74D296FDE30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40ADB40E-5723-4065-8E33-D74D296FDE30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40ADB40E-5723-4065-8E33-D74D296FDE30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40ADB40E-5723-4065-8E33-D74D296FDE30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D142544-329D-45AE-AC2C-5C31EF616D4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D142544-329D-45AE-AC2C-5C31EF616D4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D142544-329D-45AE-AC2C-5C31EF616D4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D142544-329D-45AE-AC2C-5C31EF616D4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDEFB27A-B664-4000-B7D7-663F5A859DE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDEFB27A-B664-4000-B7D7-663F5A859DE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDEFB27A-B664-4000-B7D7-663F5A859DE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDEFB27A-B664-4000-B7D7-663F5A859DE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,13 @@
+﻿@model IEnumerable<WatchListViewModel>
+@{
+    ViewData["Title"] = "WatchlistPage";
+}
+
+<h1>WatchlistPage</h1>
+@foreach (var item in Model)
+{
+    <div class="carouselImage" style="background-size:cover;">
+        <a href='@string.Format("/Movie/MoviePage?MovieID={0}", item.MovieID)'>@item.MovieID</a>
+    </div>
+}
+
