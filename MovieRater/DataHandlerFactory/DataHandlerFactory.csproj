@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DataHandlerInterfaces\DataHandlerInterfaces.csproj" />
+    <ProjectReference Include="..\DataHandler\DataHandler.csproj" />
+  </ItemGroup>
+
 </Project>

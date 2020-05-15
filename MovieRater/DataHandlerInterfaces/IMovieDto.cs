@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DataHandlerInterfaces;
+using System.Text;
 
-namespace DataHandler.Models
+namespace DataHandlerInterfaces
 {
-    public class MovieDto : IMovieDto
+    public interface IMovieDto
     {
         public int MovieID { get; set; }
         public string Poster { get; set; }
