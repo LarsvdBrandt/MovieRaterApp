@@ -8,5 +8,7 @@ namespace DataHandlerInterfaces
     public interface IWatchListContext
     {
         string ConnectionString { get; set; }
+        List<IWatchListDto> GetWatchList();
+
     }
 }

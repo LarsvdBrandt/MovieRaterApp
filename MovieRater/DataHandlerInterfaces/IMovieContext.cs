@@ -10,7 +10,7 @@ namespace DataHandlerInterfaces
 
         int CreateMovie(IMovieDto movieDto);
         void DeleteMovie(int movieID);
-        void EditMovie(string movieTitle, string MovieInfo, string MovieSummary, string Poster, string Trailer, string Writers, string Stars, string Director);
+        void EditMovie(string MovieTitle, string MovieInfo, string MovieSummary, string Poster, string Trailer, string Writers, string Stars, string Director, int MovieID);
         IMovieDto GetMovie(int movieID);
         List<IMovieDto> GetMovies();
     }

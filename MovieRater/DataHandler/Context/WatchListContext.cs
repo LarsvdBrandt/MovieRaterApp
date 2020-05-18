@@ -1,17 +1,18 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using MySql.Data.MySqlClient;
+using DataHandler.Models;
+using DataHandlerInterfaces;
 
 namespace DataHandler.Context
 {
-    class WatchListContext
+    public class WatchListContext : IWatchListContext
     {
         public string ConnectionString { get; set; }
 
-        public WatchListContext(string ConnectionString)
+        public WatchListContext()
         {
-            this.ConnectionString = ConnectionString;
+            ConnectionString = ConnectionStringValue.connectionString;
         }
 
         private MySqlConnection GetConnection()
@@ -19,26 +20,28 @@ namespace DataHandler.Context
             return new MySqlConnection(ConnectionString);
         }
 
-        public List<WatchList> GetWatchListViewModels()
+        public List<IWatchListDto> GetWatchList()
         {
-            string command = "select * from watchlist;";
-            List<WatchList> watchLists = new List<WatchList>();
+            string command = "SELECT * FROM watchlist;";
+            List<IWatchListDto> watchListDtos = new List<IWatchListDto>();
+
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(command, conn);
+
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    watchLists.Add(new WatchList()
+                    watchListDtos.Add(new WatchListDto()
                     {
                         UserID = reader.GetInt32(0),
-                        MovieID = reader.GetInt32(1)
+                        MovieID = reader.GetInt32(1),
+                        WatchListID = reader.GetInt32(2)
                     });
-
                 }
             }
-            return watchLists;
+            return watchListDtos;
         }
     }
 }

@@ -5,7 +5,7 @@ using DataHandlerInterfaces;
 
 namespace DataHandler.Models
 {
-    class RatingDto : IRatingDto
+    public class RatingDto : IRatingDto
     {
         public int RatingID { get; set; }
         public int MovieID { get; set; }

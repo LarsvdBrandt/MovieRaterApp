@@ -14,12 +14,30 @@ namespace DataHandlerFactory
             return new MovieContext();
         }
 
-        public static IRatingContext GetRating()
+        public static IMovieDto GetMovieDto()
+        {
+            return new MovieDto();
+        }
+        
+        public static IRatingContext GetRatingContext()
         {
             return new RatingContext();
         }
 
+        public static IRatingDto GetRatingDto()
+        {
+            return new RatingDto();
+        }
 
+        public static IWatchListContext GetWatchListContext()
+        {
+            return new WatchListContext();
+        }
+
+        public static IWatchListDto GetWatchListDto()
+        {
+            return new WatchListDto();
+        }
 
     }
 }

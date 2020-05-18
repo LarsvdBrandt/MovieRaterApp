@@ -6,31 +6,34 @@ using DataHandlerInterfaces;
 
 namespace DataHandler.Context
 {
-    class MovieContext : IMovieContext
+    public class MovieContext : IMovieContext
     {
         public string ConnectionString { get; set; }
 
-        public MovieContext(string ConnectionString)
+        public MovieContext()
         {
-            this.ConnectionString = ConnectionString;
+            ConnectionString = ConnectionStringValue.connectionString;
         }
 
         private MySqlConnection GetConnection()
         {
             return new MySqlConnection(ConnectionString);
         }
-        public List<MovieViewModel> GetMovieModels()
+
+        public List<IMovieDto> GetMovies()
         {
-            string command = "select * from movie;";
-            List<MovieViewModel> movieModels = new List<MovieViewModel>();
+            string command = "SELECT * FROM movie;";
+            List<IMovieDto> movieDtos = new List<IMovieDto>();
+
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(command, conn);
+
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    movieModels.Add(new MovieViewModel()
+                    movieDtos.Add(new MovieDto()
                     {
                         MovieID = reader.GetInt32(0),
                         MovieTitle = reader.GetString(1),
@@ -42,44 +45,74 @@ namespace DataHandler.Context
                         Stars = reader.GetString(7),
                         Director = reader.GetString(8)
                     });
+                }
+            }
+            return movieDtos;
+        }
+
+        public IMovieDto GetMovie(int movieID)
+        {
+            string command = "select * from movie WHERE movieID='{0}';";
+            IMovieDto movieModels = new MovieDto();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(string.Format(command, movieID.ToString()), conn);
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    movieModels = new MovieDto()
+                    {
+                        MovieID = Convert.ToInt32(reader["MovieID"]),
+                        MovieTitle = reader["MovieTitle"].ToString(),
+                        MovieInfo = reader["MovieInfo"].ToString(),
+                        MovieSummary = reader["MovieSummary"].ToString(),
+                        Poster = reader["Poster"].ToString(),
+                        Writers = reader["Writers"].ToString(),
+                        Stars = reader["Stars"].ToString(),
+                        Director = reader["Director"].ToString()
+                    };
 
                 }
             }
             return movieModels;
         }
 
-        public void AddMovie(MovieViewModel model)
+        public int CreateMovie(IMovieDto movieDto)
         {
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
                 string command = "INSERT INTO movie (MovieID,MovieTitle,MovieInfo,MovieSummary,Poster,Trailer,Writers,Stars,Director) " +
                     "values ({0}, '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}')";
-                MySqlCommand cmd = new MySqlCommand(string.Format(command, model.MovieID, model.MovieTitle, model.MovieInfo, model.MovieSummary,
-                                                    model.Poster, model.Trailer, model.Writers, model.Stars, model.Director), conn);
-                cmd.ExecuteNonQuery();
+                MySqlCommand cmd = new MySqlCommand(string.Format(command, movieDto.MovieID, movieDto.MovieTitle, movieDto.MovieInfo, movieDto.MovieSummary,
+                                                    movieDto.Poster, movieDto.Trailer, movieDto.Writers, movieDto.Stars, movieDto.Director), conn);
+                int rowcount = cmd.ExecuteNonQuery();
+                return rowcount;
             }
         }
-        public void EditMovie(EditMovieViewModel model)
+        public void EditMovie(string MovieTitle, string MovieInfo, string MovieSummary, string Poster, string Trailer, string Writers, string Stars, string Director, int MovieID)
         {
-            string command = "UPDATE movie SET MovieID='{0}',MovieTitle='{1}',MovieInfo='{2}',MovieSummary='{3}',Poster='{4}',Trailer='{5}',Writers='{6}',Stars='{7}',Director='{8}' WHERE MovieID='{9}';";
+            string command = "UPDATE movie SET MovieTitle='{1}',MovieInfo='{2}',MovieSummary='{3}',Poster='{4}',Trailer='{5}',Writers='{6}',Stars='{7}',Director='{8}' WHERE MovieID='{9}';";
 
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand(string.Format(command, model.MovieID, model.MovieTitle, model.MovieInfo, model.MovieSummary, model.Poster, model.Trailer, model.Writers, model.Stars, model.Director, model.MovieID), conn);
+                MySqlCommand cmd = new MySqlCommand(string.Format(command, MovieID, MovieTitle, MovieInfo, MovieSummary,
+                                                    Poster, Trailer, Writers, Stars, Director, MovieID), conn);
                 cmd.ExecuteNonQuery();
             }
         }
 
-        public void DeleteMovie(EditMovieViewModel model)
+        public void DeleteMovie(int movieID)
         {
             string command = "DELETE FROM movie WHERE MovieID='{0}';";
 
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand(string.Format(command, model.MovieID), conn);
+                MySqlCommand cmd = new MySqlCommand(string.Format(command, movieID), conn);
                 cmd.ExecuteNonQuery();
             }
         }

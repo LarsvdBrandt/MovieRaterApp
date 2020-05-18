@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using DataHandler.Models;
+using DataHandlerInterfaces;
 using MySql.Data.MySqlClient;
 
 namespace DataHandler.Context
 {
-    class RatingContext
+    public class RatingContext : IRatingContext
     {
         public string ConnectionString { get; set; }
 
-        public RatingContext(string ConnectionString)
+        public RatingContext()
         {
-            this.ConnectionString = ConnectionString;
+            ConnectionString = ConnectionStringValue.connectionString;
         }
 
         private MySqlConnection GetConnection()
@@ -19,31 +21,34 @@ namespace DataHandler.Context
             return new MySqlConnection(ConnectionString);
         }
 
-        public void AddRating(Rating model)
+        public int CreateRating(IRatingDto ratingDto)
         {
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
                 string command = "INSERT INTO rating (RatingID,MovieID,RatingStars,RatingTitle,RatingComment) " +
                     "values ({0}, '{1}', '{2}', '{3}', '{4}')";
-                MySqlCommand cmd = new MySqlCommand(string.Format(command, model.RatingID, model.MovieID, model.RatingStars,
-                    model.RatingTitle, model.RatingComment), conn);
-                cmd.ExecuteNonQuery();
+                MySqlCommand cmd = new MySqlCommand(string.Format(command, ratingDto.RatingID, ratingDto.MovieID, ratingDto.RatingStars,
+                    ratingDto.RatingTitle, ratingDto.RatingComment), conn);
+                int rowcount = cmd.ExecuteNonQuery();
+                return rowcount;
             }
         }
 
-        public List<Rating> GetRatingViewModels()
+        public List<IRatingDto> GetRatings()
         {
-            string command = "select * from rating;";
-            List<Rating> ratings = new List<Rating>();
+            string command = "SELECT * FROM rating;";
+            List<IRatingDto> ratingDtos = new List<IRatingDto>();
+
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(command, conn);
+
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    ratings.Add(new Rating()
+                    ratingDtos.Add(new RatingDto()
                     {
                         RatingID = reader.GetInt32(0),
                         MovieID = reader.GetInt32(1),
@@ -51,10 +56,35 @@ namespace DataHandler.Context
                         RatingTitle = reader.GetString(3),
                         RatingComment = reader.GetString(4)
                     });
+                }
+            }
+            return ratingDtos;
+        }
+
+        /*public IRatingDto GetRating(int movieID)
+        {
+            string command = "select * from rating WHERE movieID='{0}';";
+            IRatingDto ratingDto = new RatingDto();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(string.Format(command, movieID.ToString()), conn);
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ratingDto = new RatingDto()
+                    {
+                        RatingID = Convert.ToInt32(reader["RatingID"]),
+                        MovieID = Convert.ToInt32(reader["MovieID"]),
+                        RatingStars = Convert.ToInt32(reader["RatingStars"]),
+                        RatingTitle = reader["RatingTitle"].ToString(),
+                        RatingComment = reader["RatingComment"].ToString()
+                    };
 
                 }
             }
-            return ratings;
-        }
+            return ratingDto;
+        }*/
     }
 }

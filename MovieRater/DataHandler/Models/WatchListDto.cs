@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataHandlerInterfaces;
 
-namespace MovieRater.Models
+namespace DataHandler.Models
 {
     public class WatchListDto : IWatchListDto
     {
