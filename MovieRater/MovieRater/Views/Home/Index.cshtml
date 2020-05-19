@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MovieViewModel>
+﻿@model MovieIndexViewModel
 @{
     ViewData["Title"] = "Home Page";
     <link href="https://cdn.rawgit.com/JacobLett/bootstrap4-latest/master/bootstrap-4-latest.min.css">
@@ -361,7 +361,7 @@
 
 <section class="items" style="margin-bottom: auto; margin-top: auto">
     <div class="carouselOfImages">
-        @foreach (var item in Model)
+        @foreach (var item in Model.Movies)
         {
             <div class="carouselImage" style="background-size:cover;">
                 <a href='@string.Format("/Movie/MoviePage?MovieID={0}", item.MovieID)'><img data-tab="bright" class="rounded" src=/Images/Posters/@item.Poster alt="Poster"></a>

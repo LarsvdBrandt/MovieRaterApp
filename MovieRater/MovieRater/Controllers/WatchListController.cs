@@ -24,8 +24,8 @@ namespace MovieRater.Controllers
             this._environment = environment;
         }
 
-        //public IActionResult WatchListPage(int movieID)
-        //{
+        public IActionResult WatchListPage(int movieID)
+        {
             //MovieViewModel movieViewModel = new MovieViewModel();
             //MovieViewModel.MovieID = movieID;
 
@@ -36,7 +36,7 @@ namespace MovieRater.Controllers
             //watchList.MovieID = movieID;
 
             //return View(watchList);
-        //}
+        }
 
 
     }

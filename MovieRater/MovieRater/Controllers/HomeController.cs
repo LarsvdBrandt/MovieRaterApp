@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -6,25 +6,34 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MovieRater.Models;
-using MovieRater.Data;
+using LogicFactory;
+using LogicInterfaces;
+using Microsoft.AspNetCore.Mvc.ActionConstraints;
+using MovieRater.ViewModels;
 
 namespace MovieRater.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private MRContext db;
+        private IMovie movie;
+        private IMovieCollection movieCollection;
 
-        public HomeController(ILogger<HomeController> logger, MRContext db)
+
+        public HomeController()
         {
-            _logger = logger;
-            this.db = db;
+            movie = Factory.GetMovie();
+            movieCollection = Factory.GetMovieCollection();
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
-            List<MovieViewModel> movieModels = db.GetMovieModels();
-            return View(movieModels);
+            List<IMovie> movies = movieCollection.GetMovies();
+            MovieIndexViewModel model = new MovieIndexViewModel();
+
+            model.Movies = movies;
+
+            return View(model);
             
         }
 
@@ -34,4 +43,4 @@ namespace MovieRater.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
-}
+}*/

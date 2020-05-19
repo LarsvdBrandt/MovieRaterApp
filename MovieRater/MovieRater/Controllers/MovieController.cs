@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using MovieRater.Data;
+using Microsoft.AspNetCore.Mvc;z
 using MovieRater.Models;
 using MovieRater.Controllers;
 using System.IO;

@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LogicInterfaces\LogicInterfaces.csproj" />
+    <ProjectReference Include="..\LOGIC\Logic.csproj" />
+  </ItemGroup>
+
 </Project>

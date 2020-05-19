@@ -7,7 +7,7 @@ using DataHandlerInterfaces;
 
 namespace DataHandler.Context
 {
-    public class AccountContext : IAccountContext
+    public class AccountContext
     {
         public string ConnectionString { get; set; }
 
