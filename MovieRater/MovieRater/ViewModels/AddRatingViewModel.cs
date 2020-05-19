@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MovieRater.Models
+namespace MovieRater.ViewModels
 {
-    public class RatingViewModel
+    public class AddRatingViewModel
     {
         public int RatingID { get; set; }
         public int MovieID { get; set; }

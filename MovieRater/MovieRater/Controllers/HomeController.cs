@@ -1,15 +1,14 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using MovieRater.Models;
+using MovieRater.ViewModels;
 using LogicFactory;
 using LogicInterfaces;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
-using MovieRater.ViewModels;
 
 namespace MovieRater.Controllers
 {
@@ -25,7 +24,6 @@ namespace MovieRater.Controllers
             movieCollection = Factory.GetMovieCollection();
         }
 
-        [HttpGet]
         public IActionResult Index()
         {
             List<IMovie> movies = movieCollection.GetMovies();
@@ -43,4 +41,4 @@ namespace MovieRater.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
-}*/
+}

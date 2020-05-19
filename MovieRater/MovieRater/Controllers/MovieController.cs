@@ -2,50 +2,139 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;z
+using Microsoft.AspNetCore.Mvc;
 using MovieRater.Models;
+using MovieRater.ViewModels;
 using MovieRater.Controllers;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using LogicFactory;
+using LogicInterfaces;
+using Microsoft.AspNetCore.Mvc.ActionConstraints;
 
 namespace MovieRater.Controllers
 {
     public class MovieController : Controller
     {
-        private MRContext db;
-        private readonly IWebHostEnvironment _environment;
+        private IMovie movie;
+        private IMovieCollection movieCollection;
 
-
-        public MovieController(MRContext db, IWebHostEnvironment environment)
-        {
-            this.db = db;
-            this._environment = environment;
-        }
-        public IActionResult EditMovieCaller(EditMovieViewModel movie)
-        {
-            db.EditMovie(movie);
-            return View("EditSuccessPage");
-        }
-
-        public IActionResult DeleteMovieCaller(EditMovieViewModel movie)
-        {
-            db.DeleteMovie(movie);
-            return View("EditSuccessPage");
-        }
-
+        [HttpGet]
         public IActionResult MoviePage(int movieID)
         {
-            RatingViewModel ratingViewModel = new RatingViewModel();
-            List<MovieViewModel> movieViewModels = db.GetMovieModels().Where(x => x.MovieID == movieID).ToList();
-            MovieViewModel currentMovie = movieViewModels[0];
+            movie = movieCollection.GetMovie(movieID);
+
+            MoviePageViewModel model = new MoviePageViewModel()
+            {
+                MovieID = movie.MovieID,
+                MovieTitle = movie.MovieTitle,
+                MovieInfo = movie.MovieInfo,
+                MovieSummary = movie.MovieSummary,
+                Poster = movie.Poster,
+                Director = movie.Director,
+                Stars = movie.Stars,
+                Trailer = movie.Trailer,
+                Writers = movie.Writers
+            };
+
+            return View(model);
+
+            /*RatingViewModel ratingViewModel = new RatingViewModel();
+            List<MoviePageViewModel> movieViewModels = db.GetMovieModels().Where(x => x.MovieID == movieID).ToList();
+            MoviePageViewModel currentMovie = movieViewModels[0];
 
             List<Rating> ratings = db.GetRatingViewModels().Where(x => x.MovieID == movieID).ToList();
 
             ratingViewModel.MovieViewModel = currentMovie;
             ratingViewModel.Ratings = ratings;
-            return View(ratingViewModel);
+            return View(ratingViewModel);*/
         }
 
+        [HttpGet]
+        public IActionResult EditMoviePage(int movieID)
+        {
+            EditMovieViewModel model = new EditMovieViewModel()
+            {
+                MovieID = movie.MovieID,
+                MovieTitle = movie.MovieTitle,
+                MovieInfo = movie.MovieInfo,
+                MovieSummary = movie.MovieSummary,
+                Poster = movie.Poster,
+                Director = movie.Director,
+                Stars = movie.Stars,
+                Trailer = movie.Trailer,
+                Writers = movie.Writers
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult EditMovie(EditMovieViewModel model)
+        {
+            movie.MovieID = model.MovieID;
+            movie.MovieInfo = model.MovieInfo;
+            movie.MovieSummary = model.MovieSummary;
+            movie.MovieTitle = model.MovieTitle;
+            movie.Stars = model.Stars;
+            movie.Trailer = model.Trailer;
+            movie.Writers = model.Writers;
+            movie.Director = model.Director;
+
+            movie.EditMovie();
+            return RedirectToAction("EditsuccessPage");
+        }
+
+        [HttpPost]
+        public IActionResult AddMovie(AddMovieViewModel model)
+        {
+            movie.MovieID = model.MovieID;
+            movie.MovieInfo = model.MovieInfo;
+            movie.MovieSummary = model.MovieSummary;
+            movie.MovieTitle = model.MovieTitle;
+            movie.Stars = model.Stars;
+            movie.Trailer = model.Trailer;
+            movie.Writers = model.Writers;
+            movie.Director = model.Director;
+
+            int rowcount = movieCollection.CreateMovie(movie);
+
+            if (rowcount == 1)
+                return RedirectToAction("EditSuccessPage");
+            else
+                return RedirectToAction("FailPage");
+        }
+
+        [HttpGet]
+        public IActionResult DeleteMoviePage(int movieID)
+        {
+            movie = movieCollection.GetMovie(movieID);
+
+            DeleteMovieViewModel model = new DeleteMovieViewModel()
+            {
+                MovieID = movie.MovieID,
+                MovieTitle = movie.MovieTitle,
+                MovieInfo = movie.MovieInfo,
+                MovieSummary = movie.MovieSummary,
+                Poster = movie.Poster,
+                Director = movie.Director,
+                Stars = movie.Stars,
+                Trailer = movie.Trailer,
+                Writers = movie.Writers
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteMovie(int movieID)
+        {
+            movie = movieCollection.GetMovie(movieID);
+
+            movie.DeleteMovie();
+
+            return RedirectToAction("EditSuccessPage");
+        }
 
         [HttpGet]
         public IActionResult AddMoviePage()
@@ -58,170 +147,6 @@ namespace MovieRater.Controllers
         {
 
             return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> AddMovie(AddMovieViewModel model)
-        {
-            MovieViewModel realmodel = new MovieViewModel();
-
-            var uploads = Path.Combine(_environment.WebRootPath, "Images/Posters");
-            foreach (var file in model.Files)
-            {
-                realmodel.Poster = file.FileName;
-                if (file.Length > 0)
-                {
-                    using (var fileStream = new FileStream(Path.Combine(uploads, file.FileName), FileMode.Create))
-                    {
-                        await file.CopyToAsync(fileStream);
-                    }
-                }
-            }
-
-            realmodel.MovieID = model.MovieID;
-            realmodel.MovieInfo = model.MovieInfo;
-            realmodel.MovieSummary = model.MovieSummary;
-            realmodel.MovieTitle = model.MovieTitle;
-            realmodel.Stars = model.Stars;
-            realmodel.Trailer = model.Trailer;
-            realmodel.Writers = model.Writers;
-            realmodel.Director = model.Director;
-            db.AddMovie(realmodel);
-            return RedirectToAction("Index", "Home", "");
-        }
-
-        public IActionResult DeleteMoviePage(int movieID)
-        {
-            List<MovieViewModel> movieModels = db.GetMovieModels().Where(x => x.MovieID == movieID).ToList();
-            MovieViewModel model = movieModels[0];
-            EditMovieViewModel realmodel = new EditMovieViewModel();
-            realmodel.MovieID = model.MovieID;
-            realmodel.MovieInfo = model.MovieInfo;
-            realmodel.MovieSummary = model.MovieSummary;
-            realmodel.MovieTitle = model.MovieTitle;
-            realmodel.Stars = model.Stars;
-            realmodel.Trailer = model.Trailer;
-            realmodel.Writers = model.Writers;
-            realmodel.Director = model.Director;
-            realmodel.Poster = model.Poster;
-
-            return View(realmodel);
-        }
-
-        public IActionResult DeleteMovie(EditMovieViewModel model, int movieID)
-        {
-            List<MovieViewModel> movieViewModels = db.GetMovieModels().Where(x => x.MovieID == movieID).ToList();
-            MovieViewModel realmodel = new MovieViewModel();
-            if (ModelState.IsValid)
-            {
-                realmodel.MovieID = model.MovieID;
-                realmodel.MovieInfo = model.MovieInfo;
-                realmodel.MovieSummary = model.MovieSummary;
-                realmodel.MovieTitle = model.MovieTitle;
-                realmodel.Stars = model.Stars;
-                realmodel.Trailer = model.Trailer;
-                realmodel.Writers = model.Writers;
-                realmodel.Director = model.Director;
-                if (model.Poster == null)
-                {
-                    realmodel.Poster = model.Poster;
-                }
-
-                List<MovieViewModel> movieModels = db.GetMovieModels().Where(x => x.MovieID == movieID).ToList();
-                return RedirectToAction("MoviePage", new { realmodel.MovieID });
-            }
-            else
-            {
-                return View("FailPage");
-            }
-        }
-
-        public IActionResult RatingPage(int movieID)
-        {
-            Rating rating = new Rating();
-            rating.MovieID = movieID;
-
-            return View(rating);
-        }
-
-        [HttpPost]
-        public IActionResult AddRating(Rating rating, int movieID)
-        {
-            List<MovieViewModel> movieModels = db.GetMovieModels().Where(x => x.MovieID == movieID).ToList();
-            MovieViewModel currentMovie = movieModels[0];
-
-            if (ModelState.IsValid)
-            {
-                db.AddRating(rating);
-                return RedirectToAction("Index", "Home", "");
-            }
-
-            else
-                return RedirectToAction("Login", "Account", "");
-        }
-
-        [HttpGet]
-        public IActionResult EditMoviePage(int movieID)
-        {
-            List<MovieViewModel> movieModels = db.GetMovieModels().Where(x => x.MovieID == movieID).ToList();
-            MovieViewModel model = movieModels[0];
-            EditMovieViewModel realmodel = new EditMovieViewModel();
-            realmodel.MovieID = model.MovieID;
-            realmodel.MovieInfo = model.MovieInfo;
-            realmodel.MovieSummary = model.MovieSummary;
-            realmodel.MovieTitle = model.MovieTitle;
-            realmodel.Stars = model.Stars;
-            realmodel.Trailer = model.Trailer;
-            realmodel.Writers = model.Writers;
-            realmodel.Director = model.Director;
-            realmodel.Poster = model.Poster;
-
-            return View(realmodel);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> EditMovie(EditMovieViewModel model, int movieID)
-        {
-            MovieViewModel realmodel = new MovieViewModel();
-            if (ModelState.IsValid)
-            {
-                var uploads = Path.Combine(_environment.WebRootPath, "Images/Posters");
-                foreach (var file in model.Files)
-                {
-                    foreach (var Poster in model.Poster)
-                    {
-                        realmodel.Poster = file.FileName;
-                        if (file.Length > 0)
-                        {
-                            using (var fileStream = new FileStream(Path.Combine(uploads, file.FileName), FileMode.Create))
-                            {
-                                await file.CopyToAsync(fileStream);
-                            }
-                        }
-                    }
-                }
-
-                realmodel.MovieID = model.MovieID;
-                realmodel.MovieInfo = model.MovieInfo;
-                realmodel.MovieSummary = model.MovieSummary;
-                realmodel.MovieTitle = model.MovieTitle;
-                realmodel.Stars = model.Stars;
-                realmodel.Trailer = model.Trailer;
-                realmodel.Writers = model.Writers;
-                realmodel.Director = model.Director;
-                if (model.Poster == null)
-                {
-                    realmodel.Poster = model.Poster;
-                }
-
-                List<MovieViewModel> movieModels = db.GetMovieModels().Where(x => x.MovieID == movieID).ToList();
-                MovieViewModel oldMovie = movieModels[0];
-                return RedirectToAction("MoviePage", new { realmodel.MovieID });
-            }
-            else
-            {
-                return View("FailPage");
-            }
         }
     }
 
