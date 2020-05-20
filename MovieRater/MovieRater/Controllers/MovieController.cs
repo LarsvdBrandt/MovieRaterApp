@@ -20,11 +20,11 @@ namespace MovieRater.Controllers
         private IMovieCollection movieCollection;
 
         [HttpGet]
-        public IActionResult MoviePage(int movieID)
+        public IActionResult MoviePage(int MovieID)
         {
-            movie = movieCollection.GetMovie(movieID);
+            movie = movieCollection.GetMovie(MovieID);
 
-            MoviePageViewModel model = new MoviePageViewModel()
+            MovieRatingViewModel model = new MovieRatingViewModel()
             {
                 MovieID = movie.MovieID,
                 MovieTitle = movie.MovieTitle,
@@ -38,16 +38,6 @@ namespace MovieRater.Controllers
             };
 
             return View(model);
-
-            /*RatingViewModel ratingViewModel = new RatingViewModel();
-            List<MoviePageViewModel> movieViewModels = db.GetMovieModels().Where(x => x.MovieID == movieID).ToList();
-            MoviePageViewModel currentMovie = movieViewModels[0];
-
-            List<Rating> ratings = db.GetRatingViewModels().Where(x => x.MovieID == movieID).ToList();
-
-            ratingViewModel.MovieViewModel = currentMovie;
-            ratingViewModel.Ratings = ratings;
-            return View(ratingViewModel);*/
         }
 
         [HttpGet]
@@ -148,6 +138,7 @@ namespace MovieRater.Controllers
 
             return View();
         }
+
     }
 
 }
