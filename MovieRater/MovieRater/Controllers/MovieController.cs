@@ -56,8 +56,10 @@ namespace MovieRater.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditMoviePage(int movieID)
+        public IActionResult EditMoviePage(int MovieID)
         {
+
+            movie = movieCollection.GetMovie(MovieID);
             EditMovieViewModel model = new EditMovieViewModel()
             {
                 MovieID = movie.MovieID,
@@ -173,6 +175,11 @@ namespace MovieRater.Controllers
         }
 
         public IActionResult FailPage()
+        {
+
+            return View();
+        }
+        public IActionResult EditSuccessPage()
         {
 
             return View();

@@ -1,10 +1,10 @@
-﻿@model EditMovieViewModel
+﻿@model MovieRater.ViewModels.DeleteMovieViewModel
 @{
     ViewData["Title"] = "Verwijder Film";
 }
 
     <div class="container">
-        <form id="EditMovie-form" class="form" asp-action="DeleteMovieCaller" enctype="multipart/form-data">
+        <form id="EditMovie-form" class="form" asp-action="DeleteMovie" enctype="multipart/form-data">
             <div class="row">
                 <h1>Verwijder Film: <i>@Model.MovieTitle</i></h1>
             </div>
