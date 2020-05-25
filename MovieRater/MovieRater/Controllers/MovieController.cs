@@ -18,6 +18,17 @@ namespace MovieRater.Controllers
     {
         private IMovie movie;
         private IMovieCollection movieCollection;
+        private IRating rating;
+        private IRatingCollection ratingCollection;
+
+        public MovieController()
+        {
+            movie = Factory.GetMovie();
+            movieCollection = Factory.GetMovieCollection();
+
+            rating = Factory.GetRating();
+            ratingCollection = Factory.GetRatingCollection();
+        }
 
         [HttpGet]
         public IActionResult MoviePage(int MovieID)
@@ -34,8 +45,12 @@ namespace MovieRater.Controllers
                 Director = movie.Director,
                 Stars = movie.Stars,
                 Trailer = movie.Trailer,
-                Writers = movie.Writers
+                Writers = movie.Writers,
+               
             };
+
+            List<IRating> ratings = ratingCollection.GetRatings();
+            model.Ratings = ratings;
 
             return View(model);
         }
@@ -126,8 +141,32 @@ namespace MovieRater.Controllers
             return RedirectToAction("EditSuccessPage");
         }
 
+        [HttpPost]
+        public IActionResult AddRating(AddRatingViewModel model)
+        {
+            rating.RatingTitle = model.RatingTitle;
+            rating.RatingStars = model.RatingStars;
+            rating.RatingID = model.RatingID;
+            rating.RatingComment = model.RatingComment;
+            rating.MovieID = model.MovieID;
+
+            int rowcount = ratingCollection.CreateRating(rating);
+
+            if (rowcount == 1)
+                return RedirectToAction("EditSuccessPage");
+            else
+                return RedirectToAction("FailPage");
+        }
+
         [HttpGet]
         public IActionResult AddMoviePage()
+        {
+
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult AddRatingPage()
         {
 
             return View();

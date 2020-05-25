@@ -50,9 +50,9 @@ namespace Logic
             return ratings;
         }
 
-        public IRating GetRating(int RatingID)
+        public IRating GetRating(int MovieID)
         {
-            return ratings.Where(model => model.RatingID == RatingID).FirstOrDefault();
+            return ratings.Where(model => model.MovieID == MovieID).FirstOrDefault();
         }
 
     }

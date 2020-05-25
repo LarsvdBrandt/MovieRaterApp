@@ -15,6 +15,10 @@
     <ProjectReference Include="..\LogicInterfaces\LogicInterfaces.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Rating\" />
+  </ItemGroup>
+
 
 
 </Project>

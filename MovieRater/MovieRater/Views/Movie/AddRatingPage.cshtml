@@ -51,7 +51,7 @@
             }
     </style>
 }
-
+<p>@Model.MovieID</p>
 <div id="AddRating">
     <div class="container">
         <div id="AddRating-row" class="row justify-content-center align-items-center">
@@ -61,6 +61,13 @@
                         <h1>Beoordeel film</h1>
                         <hr />
                         @Html.HiddenFor(m => Model.MovieID)
+
+                        <p>@Model.MovieID</p>
+                        <div class="form-group">
+                            <label asp-for="MovieID" class="control-label"></label>
+                            <input asp-for="MovieID" class="form-control" placeholder="Onderwerp.." />
+                            <span asp-validation-for="MovieID" class="text-danger"></span>
+                        </div>
 
                         <div class="form-group">
                             <label asp-for="RatingTitle" class="control-label"></label>

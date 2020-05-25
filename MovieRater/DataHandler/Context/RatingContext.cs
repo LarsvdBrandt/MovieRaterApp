@@ -37,6 +37,7 @@ namespace DataHandler.Context
 
         public List<IRatingDto> GetRatings()
         {
+
             string command = "SELECT * FROM rating;";
             List<IRatingDto> ratingDtos = new List<IRatingDto>();
 
@@ -61,7 +62,7 @@ namespace DataHandler.Context
             return ratingDtos;
         }
 
-        /*public IRatingDto GetRating(int movieID)
+        public IRatingDto GetRating(int movieID)
         {
             string command = "select * from rating WHERE movieID='{0}';";
             IRatingDto ratingDto = new RatingDto();
@@ -85,6 +86,6 @@ namespace DataHandler.Context
                 }
             }
             return ratingDto;
-        }*/
+        }
     }
 }

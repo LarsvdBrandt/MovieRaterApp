@@ -50,15 +50,15 @@ namespace DataHandler.Context
             return movieDtos;
         }
 
-        public IMovieDto GetMovie(int movieID)
+        public IMovieDto GetMovie(int MovieID)
         {
-            string command = "select * from movie WHERE movieID='{0}';";
+            string command = "select * from movie WHERE MovieID='{0}';";
             IMovieDto movieModels = new MovieDto();
 
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand(string.Format(command, movieID.ToString()), conn);
+                MySqlCommand cmd = new MySqlCommand(string.Format(command, MovieID.ToString()), conn);
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
