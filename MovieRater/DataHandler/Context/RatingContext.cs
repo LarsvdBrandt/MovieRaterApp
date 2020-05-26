@@ -62,9 +62,36 @@ namespace DataHandler.Context
             return ratingDtos;
         }
 
+        public List<IRatingDto> GetRatingsMovie(int MovieID)
+        {
+
+            string command = "SELECT * FROM rating WHERE MovieID={0};";
+            List<IRatingDto> ratingDtos = new List<IRatingDto>();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(string.Format(command, MovieID), conn);
+
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ratingDtos.Add(new RatingDto()
+                    {
+                        RatingID = reader.GetInt32(0),
+                        MovieID = reader.GetInt32(1),
+                        RatingStars = reader.GetInt32(2),
+                        RatingTitle = reader.GetString(3),
+                        RatingComment = reader.GetString(4)
+                    });
+                }
+            }
+            return ratingDtos;
+        }
+
         public IRatingDto GetRating(int movieID)
         {
-            string command = "select * from rating WHERE movieID='{0}';";
+            string command = "select * from rating WHERE movieID={0};";
             IRatingDto ratingDto = new RatingDto();
 
             using (MySqlConnection conn = GetConnection())

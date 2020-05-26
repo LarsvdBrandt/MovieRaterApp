@@ -52,15 +52,5 @@ namespace MovieRater.Controllers
             else
                 return RedirectToAction("FailPage");
         }
-
-        public IActionResult MoviePage()
-        {
-            List<IRating> ratings = ratingCollection.GetRatings();
-            MovieRatingViewModel model = new MovieRatingViewModel();
-
-            model.Ratings = ratings;
-
-            return View(model);
-        }
     }
 }

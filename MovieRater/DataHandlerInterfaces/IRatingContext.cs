@@ -10,5 +10,6 @@ namespace DataHandlerInterfaces
         int CreateRating(IRatingDto ratingDto);
         //IMovieDto GetRating(int ratingID);
         List<IRatingDto> GetRatings();
+        List<IRatingDto> GetRatingsMovie(int MovieID);
     }
 }

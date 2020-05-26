@@ -49,7 +49,7 @@ namespace MovieRater.Controllers
                
             };
 
-            List<IRating> ratings = ratingCollection.GetRatings();
+            List<IRating> ratings = ratingCollection.GetRatingsMovie(MovieID);
             model.Ratings = ratings;
 
             return View(model);

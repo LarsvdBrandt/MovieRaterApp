@@ -48,11 +48,16 @@ namespace Logic
         public List<IRating> GetRatings()
         {
             return ratings;
+        }        
+        
+        public List<IRating> GetRatingsMovie(int movieID)
+        {
+            return ratings.Where(model => model.MovieID == movieID).ToList();
         }
 
-        public IRating GetRating(int MovieID)
+        public IRating GetRating(int movieID)
         {
-            return ratings.Where(model => model.MovieID == MovieID).FirstOrDefault();
+            return ratings.Where(model => model.MovieID == movieID).FirstOrDefault();
         }
 
     }
