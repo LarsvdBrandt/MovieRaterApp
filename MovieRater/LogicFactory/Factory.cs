@@ -27,5 +27,15 @@ namespace LogicFactory
         {
             return new RatingCollection();
         }
+
+        public static IWatchList GetWatchList()
+        {
+            return new WatchList();
+        }
+
+        public static IWatchListCollection GetWatchListCollection()
+        {
+            return new WatchListCollection();
+        }
     }
 }

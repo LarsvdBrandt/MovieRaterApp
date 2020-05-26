@@ -13,6 +13,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1>@Model.MovieTitle</h1>
+            
         </div>
     </div>
     <hr />
@@ -33,7 +34,7 @@
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2">
             <div>
-                <a href="#" class="btn btn-primary active" role="button" style="width:280px">Toevoegen aan watchlist</a>
+                <a href='@string.Format("/Movie/AddWatchListPage?MovieID={0}", Model.MovieID)' class="btn btn-primary active" role="button" style="width:280px">Sla film op</a>
             </div>
             <br />
             <div>
@@ -43,7 +44,7 @@
             <div>
                 <a href='@string.Format("/Movie/EditMoviePage?MovieID={0}", Model.MovieID)' class="btn btn-primary active" role="button" style="width:280px">Wijzig film</a>
             </div>
-            <br />  
+            <br />
             <div>
                 <a href='@string.Format("/Movie/DeleteMoviePage?MovieID={0}", Model.MovieID)' class="btn btn-danger active" role="button" style="width:280px">Verwijder film</a>
             </div>

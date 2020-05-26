@@ -4,7 +4,9 @@ using System.Text;
 
 namespace LogicInterfaces
 {
-    class IWatchListCollection
+    public interface IWatchListCollection
     {
+        List<IWatchList> GetWatchList();
+        int AddWatchList(IWatchList watchList);
     }
 }

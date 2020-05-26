@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataHandlerInterfaces;
+using Microsoft.AspNetCore.Http;
 
 namespace DataHandler.Models
 {
@@ -10,6 +11,8 @@ namespace DataHandler.Models
     {
         public int MovieID { get; set; }
         public string Poster { get; set; }
+
+        public ICollection<IFormFile> Files { get; set; }
         public string MovieTitle { get; set; }
         public string MovieInfo { get; set; }
         public string MovieSummary { get; set; }

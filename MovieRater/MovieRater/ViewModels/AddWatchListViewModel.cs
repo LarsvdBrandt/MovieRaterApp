@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MovieRater.Models
+namespace MovieRater.ViewModels
+
 {
-    public class WatchListViewModel
+    public class AddWatchListViewModel
     {
         public int MovieID { get; set; }
     }

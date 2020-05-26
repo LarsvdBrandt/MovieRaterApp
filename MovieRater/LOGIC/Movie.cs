@@ -4,6 +4,7 @@ using System.Text;
 using LogicInterfaces;
 using DataHandlerInterfaces;
 using DataHandlerFactory;
+using Microsoft.AspNetCore.Http;
 
 namespace Logic
 {
@@ -12,6 +13,7 @@ namespace Logic
         private IMovieContext db;
         public int MovieID { get; set; }
         public string Poster { get; set; }
+        public ICollection<IFormFile> Files { get; set; }
         public string MovieTitle { get; set; }
         public string MovieInfo { get; set; }
         public string MovieSummary { get; set; }
