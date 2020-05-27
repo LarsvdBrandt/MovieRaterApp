@@ -38,6 +38,9 @@ namespace MovieRater.Controllers
 
             rating = Factory.GetRating();
             ratingCollection = Factory.GetRatingCollection();
+
+            watchList = Factory.GetWatchList();
+            watchListCollection = Factory.GetWatchListCollection();
         }
 
         [HttpGet]
@@ -230,16 +233,28 @@ namespace MovieRater.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddWatchList(MovieRatingViewModel model)
+        public IActionResult AddWatchList(AddRatingViewModel model)
         {
             watchList.MovieID = model.MovieID;
 
-            int rowcount = watchListCollection.AddWatchList(watchList);
+            int rowcount = watchListCollection.CreateWatchList(watchList);
 
             if (rowcount == 1)
                 return RedirectToAction("EditSuccessPage");
             else
                 return RedirectToAction("FailPage");
+        }
+        [HttpGet]
+        public IActionResult AddWatchListPage(int movieID)
+        {
+            movie = movieCollection.GetMovie(movieID);
+
+            AddRatingViewModel model = new AddRatingViewModel()
+            {
+                MovieID = movie.MovieID
+            };
+
+            return View(model);
         }
 
         [HttpGet]

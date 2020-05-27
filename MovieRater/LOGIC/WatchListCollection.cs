@@ -23,21 +23,17 @@ namespace Logic
             {
                 watchLists.Add(new WatchList()
                 {
-                    UserID = watchListDto.UserID,
-                    MovieID = watchListDto.MovieID,
-                    WatchListID = watchListDto.WatchListID
+                    MovieID = watchListDto.MovieID
                 });
             }
         }
 
-        public int AddWatchList(IWatchList watchList)
+        public int CreateWatchList(IWatchList watchList)
         {
             IWatchListDto watchListDto = Factory.GetWatchListDto();
-            watchListDto.UserID = watchListDto.UserID;
             watchListDto.MovieID = watchListDto.MovieID;
-            watchListDto.WatchListID = watchListDto.WatchListID;
 
-            int rowcount = db.AddWatchList(watchListDto);
+            int rowcount = db.CreateWatchList(watchListDto);
             return rowcount;
         }
 

@@ -17,25 +17,32 @@ namespace MovieRater.Controllers
 {
     public class WatchListController : Controller
     {
-        //public WatchListController(MRContext db, IWebHostEnvironment environment)
-        //{
-       //     this.db = db;
-       //     this._environment = environment;
-//}
+        private IWatchList watchList;
+        private IWatchListCollection watchListCollection;
 
-        //public IActionResult WatchListPage(int movieID)
-        //{
-            //MovieViewModel movieViewModel = new MovieViewModel();
-            //MovieViewModel.MovieID = movieID;
+        private IMovie movie;
+        private IMovieCollection movieCollection;
 
-            //return View(movieViewModel);
+        public WatchListController()
+        {
+            watchList = Factory.GetWatchList();
+            watchListCollection = Factory.GetWatchListCollection();
 
+            movie = Factory.GetMovie();
+            movieCollection = Factory.GetMovieCollection();
+        }
+        [HttpGet]
+        public IActionResult WatchListPage()
+        {
+            List<IMovie> movies = movieCollection.GetMovies();
+            List<IWatchList> watchLists = watchListCollection.GetWatchList();
+            GetWatchListViewModel model = new GetWatchListViewModel();
 
-            //WatchList watchList = new WatchList();
-            //watchList.MovieID = movieID;
+            model.Movies = movies;
+            model.WatchLists = watchLists;
 
-            //return View(watchList);
-       // }
+            return View(model);
+        }
 
 
     }

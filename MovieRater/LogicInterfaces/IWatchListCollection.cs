@@ -7,6 +7,6 @@ namespace LogicInterfaces
     public interface IWatchListCollection
     {
         List<IWatchList> GetWatchList();
-        int AddWatchList(IWatchList watchList);
+        int CreateWatchList(IWatchList watchList);
     }
 }

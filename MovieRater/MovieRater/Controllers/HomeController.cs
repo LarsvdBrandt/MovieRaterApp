@@ -32,7 +32,6 @@ namespace MovieRater.Controllers
             model.Movies = movies;
 
             return View(model);
-            
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -19,14 +19,14 @@ namespace DataHandler.Context
         {
             return new MySqlConnection(ConnectionString);
         }
-        public int AddWatchList(IWatchListDto watchListDto)
+        public int CreateWatchList(IWatchListDto watchListDto)
         {
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                string command = "INSERT INTO watchlist (UserID,MovieID,WatchListID) " +
-                    "values ({0}, {1}, {2})";
-                MySqlCommand cmd = new MySqlCommand(string.Format(command, 1, watchListDto.MovieID, watchListDto.WatchListID), conn);
+                string command = "INSERT INTO watchlist (MovieID, UserID)" +
+                    "values ({0}, {1})";
+                MySqlCommand cmd = new MySqlCommand(string.Format(command, watchListDto.MovieID, 1), conn);
                 int rowcount = cmd.ExecuteNonQuery();
                 return rowcount;
             }
@@ -47,9 +47,7 @@ namespace DataHandler.Context
                 {
                     watchListDtos.Add(new WatchListDto()
                     {
-                        UserID = reader.GetInt32(0),
-                        MovieID = reader.GetInt32(1),
-                        WatchListID = reader.GetInt32(2),
+                        MovieID = reader.GetInt32(1)
                     });
                 }
             }

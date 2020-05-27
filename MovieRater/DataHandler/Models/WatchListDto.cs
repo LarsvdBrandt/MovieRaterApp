@@ -9,8 +9,6 @@ namespace DataHandler.Models
 {
     public class WatchListDto : IWatchListDto
     {
-        public int WatchListID { get; set; }
-        public int UserID { get; set; }
         public int MovieID { get; set; }
     }
 }
