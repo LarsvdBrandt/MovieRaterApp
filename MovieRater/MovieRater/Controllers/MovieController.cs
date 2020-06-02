@@ -90,6 +90,50 @@ namespace MovieRater.Controllers
         }
 
         [HttpPost]
+        public async Task<IActionResult> EditMovie(EditMovieViewModel model)
+        {
+            if (model.Files != null)
+            {
+                var uploads = Path.Combine(_environment.WebRootPath, "Images/Posters");
+                foreach (var file in model.Files)
+                {
+                    movie.Poster = file.FileName;
+                    if (file.Length > 0)
+                    {
+                        using (var fileStream = new FileStream(Path.Combine(uploads, file.FileName), FileMode.Create))
+                        {
+                            await file.CopyToAsync(fileStream);
+                        }
+                    }
+                }
+
+                movie.MovieID = model.MovieID;
+                movie.MovieInfo = model.MovieInfo;
+                movie.MovieSummary = model.MovieSummary;
+                movie.MovieTitle = model.MovieTitle;
+                movie.Stars = model.Stars;
+                movie.Trailer = model.Trailer;
+                movie.Writers = model.Writers;
+                movie.Director = model.Director;
+            }
+            else
+            {
+                movie.MovieID = model.MovieID;
+                movie.MovieInfo = model.MovieInfo;
+                movie.MovieSummary = model.MovieSummary;
+                movie.Poster = model.Poster;
+                movie.MovieTitle = model.MovieTitle;
+                movie.Stars = model.Stars;
+                movie.Trailer = model.Trailer;
+                movie.Writers = model.Writers;
+                movie.Director = model.Director;
+            }
+
+            movie.EditMovie();
+            return RedirectToAction("EditsuccessPage");
+        }
+
+        /*[HttpPost]
         public IActionResult EditMovie(EditMovieViewModel model)
         {
             movie.MovieID = model.MovieID;
@@ -103,7 +147,7 @@ namespace MovieRater.Controllers
 
             movie.EditMovie();
             return RedirectToAction("EditsuccessPage");
-        }
+        }*/
 
         [HttpPost]
         public async Task<IActionResult> AddMovie(AddMovieViewModel model)
@@ -139,28 +183,28 @@ namespace MovieRater.Controllers
         }
 
 
-/*[HttpPost]
-public IActionResult AddMovie(AddMovieViewModel model)
-{
-    movie.MovieID = model.MovieID;
-    movie.Poster = model.Poster;
-    movie.MovieInfo = model.MovieInfo;
-    movie.MovieSummary = model.MovieSummary;
-    movie.MovieTitle = model.MovieTitle;
-    movie.Stars = model.Stars;
-    movie.Trailer = model.Trailer;
-    movie.Writers = model.Writers;
-    movie.Director = model.Director;
+        /*[HttpPost]
+        public IActionResult AddMovie(AddMovieViewModel model)
+        {
+            movie.MovieID = model.MovieID;
+            movie.Poster = model.Poster;
+            movie.MovieInfo = model.MovieInfo;
+            movie.MovieSummary = model.MovieSummary;
+            movie.MovieTitle = model.MovieTitle;
+            movie.Stars = model.Stars;
+            movie.Trailer = model.Trailer;
+            movie.Writers = model.Writers;
+            movie.Director = model.Director;
 
-    int rowcount = movieCollection.CreateMovie(movie);
+            int rowcount = movieCollection.CreateMovie(movie);
 
-    if (rowcount == 1)
-        return RedirectToAction("EditSuccessPage");
-    else
-        return RedirectToAction("FailPage");
-}*/
+            if (rowcount == 1)
+                return RedirectToAction("EditSuccessPage");
+            else
+                return RedirectToAction("FailPage");
+        }*/
 
-[HttpGet]
+        [HttpGet]
         public IActionResult DeleteMoviePage(int movieID)
         {
             movie = movieCollection.GetMovie(movieID);
