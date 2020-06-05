@@ -8,7 +8,6 @@ namespace MovieRater.ViewModels
 {
     public class GetWatchListViewModel
     {
-        public List<IMovie> Movies { get; set; }
         public List<IWatchList> WatchLists { get; set; }
     }
 }

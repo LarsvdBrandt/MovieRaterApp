@@ -39,7 +39,7 @@ namespace MovieRater.Controllers
             rating = Factory.GetRating();
             ratingCollection = Factory.GetRatingCollection();
 
-            watchList = Factory.GetWatchList();
+            watchList = Factory.GetWatchListMovie();
             watchListCollection = Factory.GetWatchListCollection();
         }
 

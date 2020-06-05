@@ -25,7 +25,7 @@ namespace MovieRater.Controllers
 
         public WatchListController()
         {
-            watchList = Factory.GetWatchList();
+            watchList = Factory.GetWatchListMovie();
             watchListCollection = Factory.GetWatchListCollection();
 
             movie = Factory.GetMovie();
@@ -34,14 +34,13 @@ namespace MovieRater.Controllers
         [HttpGet]
         public IActionResult WatchListPage()
         {
-            List<IMovie> movies = movieCollection.GetMovies();
-            List<IWatchList> watchLists = watchListCollection.GetWatchList();
+            List<IWatchList> watchLists = watchListCollection.GetWatchListMovie();
             GetWatchListViewModel model = new GetWatchListViewModel();
 
-            model.Movies = movies;
             model.WatchLists = watchLists;
 
             return View(model);
+
         }
 
 

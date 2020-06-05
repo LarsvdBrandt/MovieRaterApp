@@ -4,12 +4,47 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MovieRater.Models;
+using MovieRater.ViewModels;
 using MovieRater.Controllers;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using LogicFactory;
+using LogicInterfaces;
+using Microsoft.AspNetCore.Mvc.ActionConstraints;
 
 namespace MovieRater.Controllers
 {
     public class AccountController : Controller
     {
+        private IAccount account;
+        private IAccountCollection accountCollection;
+
+
+        public AccountController( )
+        {
+            account = Factory.GetAccount();
+            accountCollection = Factory.GetAccountCollection();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddAccount(AddAccountViewModel model)
+        {
+            account.UserID = model.UserID;
+            account.UserName = model.UserName;
+            account.FirstName = model.FirstName;
+            account.LastName = model.LastName;
+            account.Email = model.Email;
+            account.PhoneNumber = model.PhoneNumber;
+            account.Password = model.Password;
+
+            int rowcount = accountCollection.CreateAccount(account);
+
+            if (rowcount == 1)
+                return RedirectToAction("EditSuccessPage");
+            else
+                return RedirectToAction("FailPage");
+        }
+
 
         public IActionResult Register()
         {

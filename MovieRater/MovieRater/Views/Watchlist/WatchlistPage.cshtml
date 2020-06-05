@@ -6,15 +6,6 @@
 <h1>WatchlistPage</h1>
 @foreach (var item in Model.WatchLists)
 {
-    @foreach (var items in Model.Movies)
-    {
-        <div class="carouselImage" style="background-size:cover;">
-            <a href='@string.Format("/Movie/MoviePage?MovieID={0}", item.MovieID)'>@item.MovieID</a>
-        </div>
-    }
-
-    <div class="carouselImage" style="background-size:cover;">
-        <a href='@string.Format("/Movie/MoviePage?MovieID={0}", item.MovieID)'>@item.MovieID</a>
-    </div>
+    <img class="rounded img-fluid" style="max-width: 90%" src=/Images/Posters/@item.Poster alt="Poster">
 }
 

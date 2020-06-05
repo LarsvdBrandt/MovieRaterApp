@@ -1,4 +1,4 @@
-﻿@model RegisterViewModel
+﻿@model MovieRater.ViewModels.AddAccountViewModel
 @{
     ViewData["Title"] = "Register";
 
@@ -9,7 +9,7 @@
 <div class="card bg-light">
     <article class="card-body mx-auto" style="max-width: 400px;">
         <h4 class="card-title mt-3 text-center">Registreer</h4>
-        <form>
+        <form id="AddAccount-form" class="form" asp-action="AddAccount" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-xs-6 col-sm-6 col-md-6">
                     <div class="form-group input-group">
@@ -25,6 +25,13 @@
                         <input asp-for="LastName" class="form-control" placeholder="Achternaam" type="text">
                     </div>
                 </div>
+            </div>
+
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                </div>
+                <input asp-for="UserName" class="form-control" placeholder="Username" type="username">
             </div>
 
             <div class="form-group input-group">
