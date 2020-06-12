@@ -40,13 +40,28 @@ namespace MovieRater.Controllers
             int rowcount = accountCollection.CreateAccount(account);
 
             if (rowcount == 1)
-                return RedirectToAction("EditSuccessPage");
+                return RedirectToAction("RegistrationSuccessPage");
             else
                 return RedirectToAction("FailPage");
         }
 
 
         public IActionResult Register()
+        {
+            return View();
+        }
+
+        public IActionResult RegisterSuccessPage()
+        {
+            return View();
+        }
+
+        public IActionResult LoginSuccessPage()
+        {
+            return View();
+        }
+
+        public IActionResult FailPage()
         {
             return View();
         }

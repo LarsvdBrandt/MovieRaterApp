@@ -4,7 +4,12 @@ using System.Text;
 
 namespace DataHandlerInterfaces
 {
-    class IAccountContext
+    public interface IAccountContext
     {
+        string ConnectionString { get; set; }
+
+        int CreateAccount(IAccountDto accountDto);
+        IAccountDto GetAccount(string UserName);
+        List<IAccountDto> GetAccounts();
     }
 }

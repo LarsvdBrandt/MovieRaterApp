@@ -8,6 +8,7 @@ namespace DataHandlerInterfaces
     {
         string ConnectionString { get; set; }
         int CreateWatchList(IWatchListDto watchListDto);
+        List<IWatchListDto> GetWatchListMovie();
         List<IWatchListDto> GetWatchList();
 
     }

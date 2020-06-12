@@ -37,6 +37,11 @@ namespace Logic
             return rowcount;
         }
 
+        public List<IWatchList> GetWatchListMovie()
+        {
+            return watchLists;
+        }
+
         public List<IWatchList> GetWatchList()
         {
             return watchLists;

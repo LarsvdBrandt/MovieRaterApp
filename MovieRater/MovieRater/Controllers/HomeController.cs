@@ -9,6 +9,8 @@ using MovieRater.ViewModels;
 using LogicFactory;
 using LogicInterfaces;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
+using Logic;
+using MovieRaterMemoryFactory;
 
 namespace MovieRater.Controllers
 {
@@ -38,6 +40,39 @@ namespace MovieRater.Controllers
         public IActionResult Error()
         {
             return View(new MovieRater.ViewModels.ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        private void Test()
+        {
+            MovieCollection movieCollection = new FactoryMemory().CreateMovieCollection();
+
+            //Setup
+            Movie insertMovie = new Movie()
+            {
+                MovieTitle = "Casper",
+                MovieInfo = "Lars",
+                MovieSummary = "info",
+                Poster = "poster",
+                Trailer = "trailer",
+                Writers = "writers",
+                Stars = "stars",
+                Director = "director"
+            };
+
+            bool found = false;
+
+            //Action
+            movieCollection.CreateMovie(insertMovie);
+
+            //Assert
+            foreach (Movie movie in movieCollection.GetMovies())
+            {
+                if (movie.MovieTitle.Equals("Casper"))
+                {
+                    found = true;
+                }
+            }
+
         }
     }
 }

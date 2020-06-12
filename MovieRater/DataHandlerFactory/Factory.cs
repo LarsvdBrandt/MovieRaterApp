@@ -9,6 +9,16 @@ namespace DataHandlerFactory
 {
     public static class Factory
     {
+        public static IAccountContext GetAccountContext()
+        {
+            return new AccountContext();
+        }
+
+        public static IAccountDto GetAccountDto()
+        {
+            return new AccountDto();
+        }
+
         public static IMovieContext GetMovieContext()
         {
             return new MovieContext();

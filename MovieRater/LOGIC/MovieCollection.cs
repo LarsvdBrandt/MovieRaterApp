@@ -14,6 +14,11 @@ namespace Logic
         private IMovieContext db;
         private List<IMovie> movies;
 
+        public MovieCollection(IMovieContext context)
+        {
+            this.db = context;
+        }
+
         public MovieCollection()
         {
             db = Factory.GetMovieContext();

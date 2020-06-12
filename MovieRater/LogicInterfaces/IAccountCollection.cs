@@ -4,7 +4,10 @@ using System.Text;
 
 namespace LogicInterfaces
 {
-    class IAccountCollection
+    public interface IAccountCollection
     {
+        List<IAccount> GetAccounts();
+        IAccount GetAccount(string UserName);
+        int CreateAccount(IAccount account);
     }
 }

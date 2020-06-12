@@ -3,8 +3,17 @@
     ViewData["Title"] = "Register";
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 }
+<script>
+    $('#password, #confirm_password').on('keyup', function () {
+        if ($('#password').val() == $('#confirm_password').val()) {
+            $('#message').html('Matching').css('color', 'green');
+        } else
+            $('#message').html('Not Matching').css('color', 'red');
+    });
+</script>
 
 <div class="card bg-light">
     <article class="card-body mx-auto" style="max-width: 400px;">
@@ -16,13 +25,13 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                         </div>
-                        <input asp-for="FirstName" class="form-control" placeholder="Voornaam" type="text">
+                        <input asp-for="FirstName" class="form-control" placeholder="Voornaam" type="text" required>
                     </div>
                 </div>
 
                 <div class="col-xs-6 col-sm-6 col-md-6">
                     <div class="form-group input-group">
-                        <input asp-for="LastName" class="form-control" placeholder="Achternaam" type="text">
+                        <input asp-for="LastName" class="form-control" placeholder="Achternaam" type="text" required>
                     </div>
                 </div>
             </div>
@@ -31,14 +40,14 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                 </div>
-                <input asp-for="UserName" class="form-control" placeholder="Username" type="username">
+                <input asp-for="UserName" class="form-control" placeholder="Username" type="text" required>
             </div>
 
             <div class="form-group input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                 </div>
-                <input asp-for="Email" class="form-control" placeholder="Email adres" type="email">
+                <input asp-for="Email" class="form-control" placeholder="Email adres" type="email" required>
             </div>
 
             <div class="form-group input-group">
@@ -50,21 +59,22 @@
                     <option value="1">+49</option>
                     <option value="2">+32</option>
                 </select>
-                <input asp-for="PhoneNumber" class="form-control" placeholder="Telefoon nummer" type="text">
+                <input asp-for="PhoneNumber" class="form-control" placeholder="Telefoon nummer" type="text" required>
             </div>
 
             <div class="form-group input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                 </div>
-                <input asp-for="Password" class="form-control" placeholder="Wachtwoord" type="password">
+                <input asp-for="Password" class="form-control" placeholder="Wachtwoord" id="password" type="password" required>
             </div>
 
             <div class="form-group input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                 </div>
-                <input class="form-control" placeholder="Herhaal password" type="password">
+                <input class="form-control" placeholder="Herhaal password" type="password" name="confirm_password" id="confirm_password" required>
+                <span id="message"></span>
             </div>
 
             <div class="form-group">

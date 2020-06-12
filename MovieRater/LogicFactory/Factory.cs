@@ -8,6 +8,16 @@ namespace LogicFactory
 {
     public static class Factory
     {
+        public static IAccount GetAccount()
+        {
+            return new Account();
+        }
+
+        public static IAccountCollection GetAccountCollection()
+        {
+            return new AccountCollection();
+        }
+
         public static IMovie GetMovie()
         {
             return new Movie();
@@ -28,7 +38,7 @@ namespace LogicFactory
             return new RatingCollection();
         }
 
-        public static IWatchList GetWatchList()
+        public static IWatchList GetWatchListMovie()
         {
             return new WatchList();
         }
