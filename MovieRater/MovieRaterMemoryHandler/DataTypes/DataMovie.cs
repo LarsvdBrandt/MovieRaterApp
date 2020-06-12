@@ -1,4 +1,5 @@
-﻿using DataHandlerInterfaces;
+﻿using DataHandler.Models;
+using DataHandlerInterfaces;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 
@@ -17,6 +18,7 @@ namespace MovieRaterMemoryHandler.DataTypes
         public string Stars { get; set; }
         public string Director { get; set; }
 
+        //Zodat als er een dto wordt meegegeven er een datatable van wordt gemaakt.
         public DataMovie(IMovieDto movieDto)
         {
             MovieTitle = movieDto.MovieTitle;
@@ -29,9 +31,26 @@ namespace MovieRaterMemoryHandler.DataTypes
             Director = movieDto.Director;
         }
 
+        //Zodat ook een lege object kan aanmaken zonder dto mee te geven
         public DataMovie()
         {
 
+        }
+
+        //zet data in ToDto voor door te sturen naar de testcase
+        public MovieDto ToDto()
+        {
+            MovieDto movie = new MovieDto();
+            movie.MovieID = this.MovieID;
+            movie.MovieTitle = this.MovieTitle;
+            movie.MovieSummary = this.MovieSummary;
+            movie.Poster = this.Poster;
+            movie.Trailer = this.Trailer;
+            movie.Writers = this.Writers;
+            movie.Stars = this.Stars;
+            movie.Director = this.Director;
+
+            return movie;
         }
 
     }

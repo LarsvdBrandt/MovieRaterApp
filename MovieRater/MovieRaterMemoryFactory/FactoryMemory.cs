@@ -13,6 +13,10 @@ namespace MovieRaterMemoryFactory
             tables = new MemoryTables();
         }
 
+        //Maak movieHandler aan en geeft door dat die memoryhandler gebruikt en geef aan memoryhandler 
+        //door dat hij line 9(memory table gebruikt object)
+
+            //ga naar movieCollection
         public MovieCollection CreateMovieCollection()
         {
             return new MovieCollection(new MovieMemoryHandler(tables));

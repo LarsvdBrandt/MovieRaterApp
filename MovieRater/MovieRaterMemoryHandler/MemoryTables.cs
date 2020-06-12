@@ -13,6 +13,7 @@ namespace MovieRaterMemoryHandler
             CreateMovie();
         }
 
+        //Zet default film in de table
         private void CreateMovie()
         {
             movies.Insert(new DataMovie()

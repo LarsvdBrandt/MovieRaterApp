@@ -9,12 +9,14 @@ namespace MovieRaterUnitTest
     {
         private MovieCollection movieCollection;
 
+        //zet line 10 naar moviecollection object
         [TestInitialize]
         public void Setup()
         {
             movieCollection = new MovieCollection();
         }
 
+        //Test CreateMovie
         [TestMethod]
         public void CreateMovie()
         {

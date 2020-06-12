@@ -7,8 +7,10 @@ namespace MovieRaterMemoryHandler.Tables
 {
     public class TableMovie
     {
+        //Lijst met movies van de unit test data
         public List<DataMovie> Movies { get; set; } = new List<DataMovie>();
 
+        //Auto increment voor unit test data
         public int Insert(DataMovie movie)
         {
             int id = GetId();
@@ -19,6 +21,7 @@ namespace MovieRaterMemoryHandler.Tables
             return id;
         }
 
+        //Auto increment voor unit test data
         private int GetId()
         {
             int id = 0;
