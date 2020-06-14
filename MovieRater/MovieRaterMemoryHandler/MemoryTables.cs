@@ -19,7 +19,7 @@ namespace MovieRaterMemoryHandler
             movies.Insert(new DataMovie()
             {
                 MovieTitle = "Casper",
-                MovieInfo = "Lars",
+                MovieInfo = "MovieInfo",
                 MovieSummary = "info",
                 Poster = "poster",
                 Trailer = "trailer",

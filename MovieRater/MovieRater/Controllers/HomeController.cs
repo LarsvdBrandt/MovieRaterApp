@@ -42,7 +42,7 @@ namespace MovieRater.Controllers
             return View(new MovieRater.ViewModels.ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        private void Test()
+        /*private void Test()
         {
             MovieCollection movieCollection = new FactoryMemory().CreateMovieCollection();
 
@@ -73,6 +73,6 @@ namespace MovieRater.Controllers
                 }
             }
 
-        }
+        }*/
     }
 }
