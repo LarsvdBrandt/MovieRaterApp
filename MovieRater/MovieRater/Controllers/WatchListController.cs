@@ -25,11 +25,11 @@ namespace MovieRater.Controllers
 
         public WatchListController()
         {
-            watchList = Factory.GetWatchListMovie();
-            watchListCollection = Factory.GetWatchListCollection();
+            watchList = new Factory().GetWatchListMovie();
+            watchListCollection = new Factory().GetWatchListCollection();
 
-            movie = Factory.GetMovie();
-            movieCollection = Factory.GetMovieCollection();
+            movie = new Factory().GetMovie();
+            movieCollection = new Factory().GetMovieCollection(Context.Database);
         }
         [HttpGet]
         public IActionResult WatchListPage()

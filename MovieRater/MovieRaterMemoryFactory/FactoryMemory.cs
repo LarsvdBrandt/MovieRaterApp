@@ -22,10 +22,5 @@ namespace MovieRaterMemoryFactory
             return new MovieCollection(new MovieMemoryHandler(tables));
         }
 
-        //ga naar movieCollection
-        public MovieCollection GetMovie()
-        {
-            return new MovieCollection(new MovieMemoryHandler(tables));
-        }
     }
 }

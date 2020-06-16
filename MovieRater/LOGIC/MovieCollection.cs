@@ -23,7 +23,7 @@ namespace Logic
             this.db = context;
         }
 
-        public MovieCollection()
+        /*public MovieCollection()
         {
             db = Factory.GetMovieContext();
             movies = new List<IMovie>();
@@ -42,7 +42,7 @@ namespace Logic
                     Director = movieDto.Director
                 });
             }
-        }
+        }*/
 
         public int CreateMovie(IMovie movie)
         {
@@ -62,6 +62,12 @@ namespace Logic
         
         public List<IMovie> GetMovies()
         {
+            List<IMovie> movies = new List<IMovie>();
+            List<IMovieDto> movieDtos = db.GetMovies();
+            foreach (IMovieDto movie in movieDtos)
+            {
+
+            }
             return movies;
         }
 

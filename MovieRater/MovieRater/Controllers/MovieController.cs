@@ -33,14 +33,14 @@ namespace MovieRater.Controllers
 
             this._environment = environment;
 
-            movie = Factory.GetMovie();
-            movieCollection = Factory.GetMovieCollection();
+            movie = new Factory().GetMovie();
+            movieCollection = new Factory().GetMovieCollection(Context.Database);
 
-            rating = Factory.GetRating();
-            ratingCollection = Factory.GetRatingCollection();
+            rating = new Factory().GetRating();
+            ratingCollection = new Factory().GetRatingCollection();
 
-            watchList = Factory.GetWatchListMovie();
-            watchListCollection = Factory.GetWatchListCollection();
+            watchList = new Factory().GetWatchListMovie();
+            watchListCollection = new Factory().GetWatchListCollection();
         }
 
         [HttpGet]

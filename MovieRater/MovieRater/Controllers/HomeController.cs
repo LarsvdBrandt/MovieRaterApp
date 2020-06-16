@@ -22,8 +22,8 @@ namespace MovieRater.Controllers
 
         public HomeController()
         {
-            movie = Factory.GetMovie();
-            movieCollection = Factory.GetMovieCollection();
+            movie = new Factory().GetMovie();
+            movieCollection = new Factory().GetMovieCollection(Context.Database);
         }
 
         public IActionResult Index()
@@ -32,6 +32,7 @@ namespace MovieRater.Controllers
             MovieIndexViewModel model = new MovieIndexViewModel();
 
             model.Movies = movies;
+            Test();
 
             return View(model);
         }
@@ -42,15 +43,15 @@ namespace MovieRater.Controllers
             return View(new MovieRater.ViewModels.ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        /*private void Test()
+        private void Test()
         {
-            MovieCollection movieCollection = new FactoryMemory().CreateMovieCollection();
+            Factory factory = new Factory();
+            IMovieCollection movieCollection = factory.GetMovieCollection(Context.Memory);
 
-            //Setup
             Movie insertMovie = new Movie()
             {
                 MovieTitle = "Casper",
-                MovieInfo = "Lars",
+                MovieInfo = "MovieInfo",
                 MovieSummary = "info",
                 Poster = "poster",
                 Trailer = "trailer",
@@ -72,7 +73,8 @@ namespace MovieRater.Controllers
                     found = true;
                 }
             }
+            Console.WriteLine(found);
 
-        }*/
+        }
     }
 }

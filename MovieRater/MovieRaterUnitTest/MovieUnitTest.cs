@@ -8,15 +8,17 @@ namespace MovieRaterUnitTest
     [TestClass]
     public class MovieUnitTest
     {
-        private MovieCollection movieCollection;
+        private IMovieCollection movieCollection;
 
         private IMovie movie;
+        Factory factory;
 
         //zet line 10 naar moviecollection object
         [TestInitialize]
         public void Setup()
         {
-            movieCollection = new MovieCollection();
+            factory = new Factory();
+            movieCollection = factory.GetMovieCollection(Context.Memory);
         }
 
         //Test CreateMovie en Getmovies
@@ -42,7 +44,7 @@ namespace MovieRaterUnitTest
             movieCollection.CreateMovie(insertMovie);
 
             //Assert
-            foreach(Movie movie in movieCollection.GetMovies())
+            foreach (Movie movie in movieCollection.GetMovies())
             {
                 if (movie.MovieTitle.Equals("Casper"))
                 {
@@ -91,13 +93,49 @@ namespace MovieRaterUnitTest
 
             movie.EditMovie();
 
-            if(movie.MovieInfo == "TestDataInfo")
+            if (movie.MovieInfo == "TestDataInfo")
             {
                 Edited = true;
             }
 
             //Assert
             Assert.IsTrue(Edited);
+        }
+
+        //Test DeleteMovie
+        [TestMethod]
+        public void DeleteMovie()
+        {
+            //Setup
+            Movie insertMovie = new Movie()
+            {
+                MovieTitle = "Casper",
+                MovieInfo = "MovieInfo",
+                MovieSummary = "info",
+                Poster = "poster",
+                Trailer = "trailer",
+                Writers = "writers",
+                Stars = "stars",
+                Director = "director"
+            };
+
+            bool Deleted = true;
+            movieCollection.CreateMovie(insertMovie);
+            movie = movieCollection.GetMovie(insertMovie.MovieID);
+
+            //Action
+            movie.DeleteMovie();
+
+            foreach (Movie movie in movieCollection.GetMovies())
+            {
+                if (movie.MovieID.Equals(movie.MovieID))
+                {
+                    Deleted = false;
+                }
+            }
+
+            //Assert
+            Assert.IsTrue(Deleted);
         }
     }
 }

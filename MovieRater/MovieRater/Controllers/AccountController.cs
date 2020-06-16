@@ -22,8 +22,8 @@ namespace MovieRater.Controllers
 
         public AccountController( )
         {
-            account = Factory.GetAccount();
-            accountCollection = Factory.GetAccountCollection();
+            account = new Factory().GetAccount();
+            accountCollection = new Factory().GetAccountCollection();
         }
 
         [HttpPost]
