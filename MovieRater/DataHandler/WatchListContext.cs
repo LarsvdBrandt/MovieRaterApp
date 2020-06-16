@@ -1,10 +1,11 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using DataHandler.Models;
-using DataHandlerInterfaces;
 
-namespace DataHandler.Context
+using DataHandlerInterfaces;
+using MovieRaterDtos;
+
+namespace DataHandler
 {
     public class WatchListContext : IWatchListContext
     {
@@ -19,7 +20,7 @@ namespace DataHandler.Context
         {
             return new MySqlConnection(ConnectionString);
         }
-        public int CreateWatchList(IWatchListDto watchListDto)
+        public int CreateWatchList(WatchListDto watchListDto)
         {
             using (MySqlConnection conn = GetConnection())
             {
@@ -32,10 +33,10 @@ namespace DataHandler.Context
             }
         }
 
-        public List<IWatchListDto> GetWatchListMovie()
+        public List<WatchListDto> GetWatchListMovie()
         {
             string command = "SELECT * FROM movie WHERE MovieID IN (SELCT MovieID FROM watchlist WHERE UserID = 1;)";
-            List<IWatchListDto> watchListDtos = new List<IWatchListDto>();
+            List<WatchListDto> watchListDtos = new List<WatchListDto>();
 
             using (MySqlConnection conn = GetConnection())
             {
@@ -62,10 +63,10 @@ namespace DataHandler.Context
             return watchListDtos;
         }
 
-        public List<IWatchListDto> GetWatchList()
+        public List<WatchListDto> GetWatchList()
         {
             string command = "SELECT * FROM movie";
-            List<IWatchListDto> watchListDtos = new List<IWatchListDto>();
+            List<WatchListDto> watchListDtos = new List<WatchListDto>();
 
             using (MySqlConnection conn = GetConnection())
             {

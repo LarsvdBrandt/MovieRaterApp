@@ -1,6 +1,6 @@
-﻿using DataHandler.Models;
-using DataHandlerInterfaces;
+﻿using DataHandlerInterfaces;
 using Microsoft.AspNetCore.Http;
+using MovieRaterDtos;
 using System.Collections.Generic;
 
 namespace MovieRaterMemoryHandler.DataTypes
@@ -19,7 +19,7 @@ namespace MovieRaterMemoryHandler.DataTypes
         public string Director { get; set; }
 
         //Zodat als er een dto wordt meegegeven er een datatable van wordt gemaakt.
-        public DataMovie(IMovieDto movieDto)
+        public DataMovie(MovieDto movieDto)
         {
             MovieTitle = movieDto.MovieTitle;
             MovieInfo = movieDto.MovieInfo;

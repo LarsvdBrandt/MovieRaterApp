@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MovieRater.ViewModels;
 using LogicFactory;
-using LogicInterfaces;
+
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
 using Logic;
 using MovieRaterMemoryFactory;
@@ -16,19 +16,19 @@ namespace MovieRater.Controllers
 {
     public class HomeController : Controller
     {
-        private IMovie movie;
-        private IMovieCollection movieCollection;
+        private Movie movie;
+        private MovieCollection movieCollection;
 
 
         public HomeController()
         {
-            movie = new Factory().GetMovie();
             movieCollection = new Factory().GetMovieCollection(Context.Database);
         }
 
         public IActionResult Index()
         {
-            List<IMovie> movies = movieCollection.GetMovies();
+            List<Movie> movies = movieCollection.GetMovies();
+            Console.WriteLine("Hallo " + movies.Count);
             MovieIndexViewModel model = new MovieIndexViewModel();
 
             model.Movies = movies;
@@ -46,7 +46,7 @@ namespace MovieRater.Controllers
         private void Test()
         {
             Factory factory = new Factory();
-            IMovieCollection movieCollection = factory.GetMovieCollection(Context.Memory);
+            MovieCollection movieCollection = factory.GetMovieCollection(Context.Memory);
 
             Movie insertMovie = new Movie()
             {

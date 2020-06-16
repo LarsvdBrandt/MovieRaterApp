@@ -1,29 +1,26 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using DataHandler.Models;
 using DataHandlerInterfaces;
+using MovieRaterDtos;
 
-namespace DataHandler.Context
+namespace DataHandler
 {
     public class MovieContext : IMovieContext
     {
         public string ConnectionString { get; set; }
-
         public MovieContext()
         {
             ConnectionString = ConnectionStringValue.connectionString;
         }
-
         private MySqlConnection GetConnection()
         {
             return new MySqlConnection(ConnectionString);
         }
-
-        public List<IMovieDto> GetMovies()
+        public List<MovieDto> GetMovies()
         {
             string command = "SELECT * FROM movie;";
-            List<IMovieDto> movieDtos = new List<IMovieDto>();
+            List<MovieDto> movieDtos = new List<MovieDto>();
 
             using (MySqlConnection conn = GetConnection())
             {
@@ -49,11 +46,10 @@ namespace DataHandler.Context
             }
             return movieDtos;
         }
-
-        public IMovieDto GetMovie(int MovieID)
+        public MovieDto GetMovie(int MovieID)
         {
             string command = "select * from movie WHERE MovieID='{0}';";
-            IMovieDto movieModels = new MovieDto();
+            MovieDto movieModels = new MovieDto();
 
             using (MySqlConnection conn = GetConnection())
             {
@@ -78,8 +74,7 @@ namespace DataHandler.Context
             }
             return movieModels;
         }
-
-        public int CreateMovie(IMovieDto movieDto)
+        public int CreateMovie(MovieDto movieDto)
         {
             using (MySqlConnection conn = GetConnection())
             {
@@ -104,7 +99,6 @@ namespace DataHandler.Context
                 cmd.ExecuteNonQuery();
             }
         }
-
         public void DeleteMovie(int movieID)
         {
             string command = "DELETE FROM movie WHERE MovieID='{0}';";

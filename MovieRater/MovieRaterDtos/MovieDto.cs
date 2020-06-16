@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using DataHandlerInterfaces;
 using Microsoft.AspNetCore.Http;
 
-namespace DataHandler.Models
+namespace MovieRaterDtos
 {
-    public class WatchListDto : IWatchListDto
+    public class MovieDto
     {
         public int MovieID { get; set; }
         public string Poster { get; set; }

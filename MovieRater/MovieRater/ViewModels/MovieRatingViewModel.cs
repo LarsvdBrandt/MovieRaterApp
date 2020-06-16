@@ -1,4 +1,5 @@
-﻿using LogicInterfaces;
+﻿
+using Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,6 @@ namespace MovieRater.ViewModels
         public string Writers { get; set; }
         public string Stars { get; set; }
         public string Director { get; set; }
-        public List<IRating> Ratings { get; set; }
+        public List<Rating> Ratings { get; set; }
     }
 }

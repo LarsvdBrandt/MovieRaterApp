@@ -9,20 +9,20 @@ using MovieRater.Controllers;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using LogicFactory;
-using LogicInterfaces;
+
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
+using Logic;
 
 namespace MovieRater.Controllers
 {
     public class AccountController : Controller
     {
-        private IAccount account;
-        private IAccountCollection accountCollection;
+        private Account account;
+        private AccountCollection accountCollection;
 
 
         public AccountController( )
         {
-            account = new Factory().GetAccount();
             accountCollection = new Factory().GetAccountCollection();
         }
 

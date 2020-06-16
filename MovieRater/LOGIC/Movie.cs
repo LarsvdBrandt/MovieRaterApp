@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using LogicInterfaces;
+
 using DataHandlerInterfaces;
-using DataHandlerFactory;
+
 using Microsoft.AspNetCore.Http;
+using MovieRaterDtos;
 
 namespace Logic
 {
-    public class Movie : IMovie
+    public class Movie
     {
-        private IMovieContext db;
         public int MovieID { get; set; }
         public string Poster { get; set; }
         public ICollection<IFormFile> Files { get; set; }
@@ -24,17 +24,22 @@ namespace Logic
 
         public Movie()
         {
-            db = Factory.GetMovieContext();
+
         }
 
-        public void EditMovie()
+        public Movie(MovieDto movie)
         {
-            db.EditMovie(MovieTitle, MovieInfo, MovieSummary, Poster, Trailer, Writers, Stars, Director, MovieID);
+            this.MovieID = movie.MovieID;
+            this.Poster = movie.Poster;
+            this.Files = movie.Files;
+            this.MovieTitle = movie.MovieTitle;
+            this.MovieInfo = movie.MovieInfo;
+            this.MovieSummary = movie.MovieSummary;
+            this.Trailer = movie.Trailer;
+            this.Writers = movie.Writers;
+            this.Stars = movie.Stars;
+            this.Director = movie.Director;
         }
 
-        public void DeleteMovie()
-        {
-            db.DeleteMovie(MovieID);
-        }
     }
 }

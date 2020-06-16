@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieRaterDtos;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,9 +8,8 @@ namespace DataHandlerInterfaces
     public interface IRatingContext
     {
         string ConnectionString { get; set; }
-        int CreateRating(IRatingDto ratingDto);
-        //IMovieDto GetRating(int ratingID);
-        List<IRatingDto> GetRatings();
-        List<IRatingDto> GetRatingsMovie(int MovieID);
+        int CreateRating(RatingDto ratingDto);
+        List<RatingDto> GetRatings();
+        List<RatingDto> GetRatingsMovie(int MovieID);
     }
 }

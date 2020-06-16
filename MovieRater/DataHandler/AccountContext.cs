@@ -1,11 +1,11 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using DataHandler.Models;
+
 using DataHandlerInterfaces;
+using MovieRaterDtos;
 
-
-namespace DataHandler.Context
+namespace DataHandler
 {
     public class AccountContext : IAccountContext
     {
@@ -21,10 +21,10 @@ namespace DataHandler.Context
             return new MySqlConnection(ConnectionString);
         }
 
-        public List<IAccountDto> GetAccounts()
+        public List<AccountDto> GetAccounts()
         {
             string command = "SELECT * FROM user;";
-            List<IAccountDto> accountDtos = new List<IAccountDto>();
+            List<AccountDto> accountDtos = new List<AccountDto>();
 
             using (MySqlConnection conn = GetConnection())
             {
@@ -49,10 +49,10 @@ namespace DataHandler.Context
             return accountDtos;
         }
 
-        public IAccountDto GetAccount(string UserName)
+        public AccountDto GetAccount(string UserName)
         {
             string command = "select * from movie WHERE UserName='{0}';";
-            IAccountDto accountModels = new AccountDto();
+            AccountDto accountModels = new AccountDto();
 
             using (MySqlConnection conn = GetConnection())
             {
@@ -77,7 +77,7 @@ namespace DataHandler.Context
             return accountModels;
         }
 
-        public int CreateAccount(IAccountDto accountDto)
+        public int CreateAccount(AccountDto accountDto)
         {
             using (MySqlConnection conn = GetConnection())
             {

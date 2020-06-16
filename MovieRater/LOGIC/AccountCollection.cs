@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using DataHandlerInterfaces;
-using DataHandlerFactory;
-using LogicInterfaces;
 using System.Linq;
+using MovieRaterDtos;
+using DataHandler;
 
 namespace Logic
 {
-    public class AccountCollection : IAccountCollection
+    public class AccountCollection
     {
 
         private IAccountContext db;
-        private List<IAccount> accounts;
+        private List<Account> accounts;
         public AccountCollection()
         {
-            db = Factory.GetAccountContext();
-            accounts = new List<IAccount>();
-            List<IAccountDto> accountDtos = db.GetAccounts();
-            foreach (IAccountDto accountDto in accountDtos)
+            db = new AccountContext();
+            accounts = new List<Account>();
+            List<AccountDto> accountDtos = db.GetAccounts();
+            foreach (AccountDto accountDto in accountDtos)
             {
                 accounts.Add(new Account()
                 {
@@ -34,9 +34,9 @@ namespace Logic
             }
         }
 
-        public int CreateAccount(IAccount account)
+        public int CreateAccount(Account account)
         {
-            IAccountDto accountDto = Factory.GetAccountDto();
+            AccountDto accountDto = new AccountDto(); ;
             accountDto.UserID = account.UserID;
             accountDto.UserName = account.UserName;
             accountDto.FirstName = account.FirstName;
@@ -49,12 +49,12 @@ namespace Logic
             return rowcount;
         }
 
-        public List<IAccount> GetAccounts()
+        public List<Account> GetAccounts()
         {
             return accounts;
         }
 
-        public IAccount GetAccount(string UserName)
+        public Account GetAccount(string UserName)
         {
             return accounts.Where(model => model.UserName == UserName).FirstOrDefault();
         }

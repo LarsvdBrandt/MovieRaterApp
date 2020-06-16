@@ -1,6 +1,6 @@
 using Logic;
 using LogicFactory;
-using LogicInterfaces;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MovieRaterUnitTest

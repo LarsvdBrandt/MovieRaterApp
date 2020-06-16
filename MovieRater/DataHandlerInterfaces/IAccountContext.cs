@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieRaterDtos;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,8 +9,8 @@ namespace DataHandlerInterfaces
     {
         string ConnectionString { get; set; }
 
-        int CreateAccount(IAccountDto accountDto);
-        IAccountDto GetAccount(string UserName);
-        List<IAccountDto> GetAccounts();
+        int CreateAccount(AccountDto accountDto);
+        AccountDto GetAccount(string UserName);
+        List<AccountDto> GetAccounts();
     }
 }

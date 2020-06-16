@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LogicInterfaces\LogicInterfaces.csproj" />
+    <ProjectReference Include="..\DataHandler\DataHandler.csproj" />
     <ProjectReference Include="..\LOGIC\Logic.csproj" />
     <ProjectReference Include="..\MovieRaterMemoryHandler\MovieRaterMemoryHandler.csproj" />
   </ItemGroup>

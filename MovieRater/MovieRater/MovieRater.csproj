@@ -10,9 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataHandlerFactory\DataHandlerFactory.csproj" />
     <ProjectReference Include="..\LogicFactory\LogicFactory.csproj" />
-    <ProjectReference Include="..\LogicInterfaces\LogicInterfaces.csproj" />
     <ProjectReference Include="..\MovieRaterMemoryFactory\MovieRaterMemoryFactory.csproj" />
   </ItemGroup>
 

@@ -1,5 +1,5 @@
-﻿using DataHandler.Context;
-using DataHandlerInterfaces;
+﻿using DataHandlerInterfaces;
+using MovieRaterDtos;
 using MovieRaterMemoryHandler.DataTypes;
 using MovieRaterMemoryHandler.Tables;
 using System;
@@ -20,7 +20,7 @@ namespace MovieRaterMemoryHandler
         }
 
         //In de tabel data van movieDto zetten
-        public int CreateMovie(IMovieDto movieDto)
+        public int CreateMovie(MovieDto movieDto)
         {
             return movieTable.Insert(new DataMovie(movieDto));
         }
@@ -35,15 +35,15 @@ namespace MovieRaterMemoryHandler
             throw new NotImplementedException();
         }
 
-        public IMovieDto GetMovie(int movieID)
+        public MovieDto GetMovie(int movieID)
         {
             throw new NotImplementedException();
         }
 
         //door de lijst van memorytable loopen om zo alle films in een lijst te zetten.
-        public List<IMovieDto> GetMovies()
+        public List<MovieDto> GetMovies()
         {
-            List<IMovieDto> movieDtos = new List<IMovieDto>();
+            List<MovieDto> movieDtos = new List<MovieDto>();
             foreach(DataMovie movie in movieTable.Movies)
             {
                 movieDtos.Add(movie.ToDto());

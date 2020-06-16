@@ -1,14 +1,17 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace DataHandlerInterfaces
+namespace MovieRaterDtos
 {
-    public interface IMovieDto
+    public class WatchListDto
     {
         public int MovieID { get; set; }
         public string Poster { get; set; }
+
         public ICollection<IFormFile> Files { get; set; }
         public string MovieTitle { get; set; }
         public string MovieInfo { get; set; }

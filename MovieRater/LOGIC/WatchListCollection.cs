@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using DataHandlerInterfaces;
-using DataHandlerFactory;
-using LogicInterfaces;
 using System.Linq;
+using MovieRaterDtos;
+using DataHandler;
 
 namespace Logic
 {
-    public class WatchListCollection : IWatchListCollection
+    public class WatchListCollection
     {
         private IWatchListContext db;
-        private List<IWatchList> watchLists;
+        private List<WatchList> watchLists;
 
         public WatchListCollection()
         {
-            db = Factory.GetWatchListContext();
-            watchLists = new List<IWatchList>();
-            List<IWatchListDto> watchListDtos = db.GetWatchList();
-            foreach (IWatchListDto watchListDto in watchListDtos)
+            db = new WatchListContext();
+            watchLists = new List<WatchList>();
+            List<WatchListDto> watchListDtos = db.GetWatchList();
+            foreach (WatchListDto watchListDto in watchListDtos)
             {
                 watchLists.Add(new WatchList()
                 {
@@ -28,21 +28,21 @@ namespace Logic
             }
         }
 
-        public int CreateWatchList(IWatchList watchList)
+        public int CreateWatchList(WatchList watchList)
         {
-            IWatchListDto watchListDto = Factory.GetWatchListDto();
+            WatchListDto watchListDto = new WatchListDto();
             watchListDto.MovieID = watchListDto.MovieID;
 
             int rowcount = db.CreateWatchList(watchListDto);
             return rowcount;
         }
 
-        public List<IWatchList> GetWatchListMovie()
+        public List<WatchList> GetWatchListMovie()
         {
             return watchLists;
         }
 
-        public List<IWatchList> GetWatchList()
+        public List<WatchList> GetWatchList()
         {
             return watchLists;
         }

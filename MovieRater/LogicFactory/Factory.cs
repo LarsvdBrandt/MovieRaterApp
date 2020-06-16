@@ -1,12 +1,10 @@
-﻿using Logic;
-using LogicInterfaces;
+﻿using DataHandler;
+using Logic;
 using MovieRaterMemoryHandler;
 using System;
 using System.Buffers;
 using System.Collections.Generic;
 using System.Text;
-using
-using DataHandler.Context;
 
 namespace LogicFactory
 {
@@ -18,23 +16,12 @@ namespace LogicFactory
             tables = new MemoryTables();
         }
 
-        public IAccount GetAccount()
-        {
-
-            return new Account();
-        }
-
-        public IAccountCollection GetAccountCollection()
+        public AccountCollection GetAccountCollection()
         {
             return new AccountCollection();
         }
 
-        public IMovie GetMovie()
-        {
-            return new Movie();
-        }
-
-        public IMovieCollection GetMovieCollection(Context context)
+        public MovieCollection GetMovieCollection(Context context)
         {
             switch (context)
             {
@@ -47,22 +34,12 @@ namespace LogicFactory
             }
         }
 
-        public IRating GetRating()
-        {
-            return new Rating();
-        }
-
-        public IRatingCollection GetRatingCollection()
+        public RatingCollection GetRatingCollection()
         {
             return new RatingCollection();
         }
 
-        public IWatchList GetWatchListMovie()
-        {
-            return new WatchList();
-        }
-
-        public IWatchListCollection GetWatchListCollection()
+        public WatchListCollection GetWatchListCollection()
         {
             return new WatchListCollection();
         }

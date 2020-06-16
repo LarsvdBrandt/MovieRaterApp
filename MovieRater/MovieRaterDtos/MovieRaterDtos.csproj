@@ -8,8 +8,4 @@
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="3.1.4" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MovieRaterDtos\MovieRaterDtos.csproj" />
-  </ItemGroup>
-
 </Project>

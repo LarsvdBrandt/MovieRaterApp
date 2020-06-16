@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataHandlerInterfaces
+namespace MovieRaterDtos
 {
-    public interface IAccountDto
+    public class AccountDto
     {
         public int UserID { get; set; }
         public string UserName { get; set; }

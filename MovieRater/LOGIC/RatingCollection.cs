@@ -3,23 +3,25 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using DataHandlerInterfaces;
-using DataHandlerFactory;
-using LogicInterfaces;
+
+
 using System.Linq;
+using MovieRaterDtos;
+using DataHandler;
 
 namespace Logic
 {
-    public class RatingCollection : IRatingCollection
+    public class RatingCollection
     {
         private IRatingContext db;
-        private List<IRating> ratings;
+        private List<Rating> ratings;
 
         public RatingCollection()
         {
-            db = Factory.GetRatingContext();
-            ratings = new List<IRating>();
-            List<IRatingDto> ratingDtos = db.GetRatings();
-            foreach (IRatingDto ratingDto in ratingDtos)
+            db = new RatingContext();
+            ratings = new List<Rating>();
+            List<RatingDto> ratingDtos = db.GetRatings();
+            foreach (RatingDto ratingDto in ratingDtos)
             {
                 ratings.Add(new Rating()
                 {
@@ -32,9 +34,9 @@ namespace Logic
             }
         }
 
-        public int CreateRating(IRating rating)
+        public int CreateRating(Rating rating)
         {
-            IRatingDto ratingDto = Factory.GetRatingDto();
+            RatingDto ratingDto = new RatingDto();
             ratingDto.RatingID = rating.RatingID;
             ratingDto.MovieID = rating.MovieID;
             ratingDto.RatingStars = rating.RatingStars;
@@ -45,17 +47,17 @@ namespace Logic
             return rowcount;
         }
 
-        public List<IRating> GetRatings()
+        public List<Rating> GetRatings()
         {
             return ratings;
         }        
         
-        public List<IRating> GetRatingsMovie(int movieID)
+        public List<Rating> GetRatingsMovie(int movieID)
         {
             return ratings.Where(model => model.MovieID == movieID).ToList();
         }
 
-        public IRating GetRating(int movieID)
+        public Rating GetRating(int movieID)
         {
             return ratings.Where(model => model.MovieID == movieID).FirstOrDefault();
         }

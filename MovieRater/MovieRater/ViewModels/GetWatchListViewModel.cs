@@ -1,4 +1,5 @@
-﻿using LogicInterfaces;
+﻿
+using Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,6 @@ namespace MovieRater.ViewModels
 {
     public class GetWatchListViewModel
     {
-        public List<IWatchList> WatchLists { get; set; }
+        public List<WatchList> WatchLists { get; set; }
     }
 }

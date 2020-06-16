@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using DataHandler.Models;
 using DataHandlerInterfaces;
+using MovieRaterDtos;
 using MySql.Data.MySqlClient;
 
-namespace DataHandler.Context
+namespace DataHandler
 {
     public class RatingContext : IRatingContext
     {
@@ -21,7 +21,7 @@ namespace DataHandler.Context
             return new MySqlConnection(ConnectionString);
         }
 
-        public int CreateRating(IRatingDto ratingDto)
+        public int CreateRating(RatingDto ratingDto)
         {
             using (MySqlConnection conn = GetConnection())
             {
@@ -35,11 +35,11 @@ namespace DataHandler.Context
             }
         }
 
-        public List<IRatingDto> GetRatings()
+        public List<RatingDto> GetRatings()
         {
 
             string command = "SELECT * FROM rating;";
-            List<IRatingDto> ratingDtos = new List<IRatingDto>();
+            List<RatingDto> ratingDtos = new List<RatingDto>();
 
             using (MySqlConnection conn = GetConnection())
             {
@@ -62,11 +62,11 @@ namespace DataHandler.Context
             return ratingDtos;
         }
 
-        public List<IRatingDto> GetRatingsMovie(int MovieID)
+        public List<RatingDto> GetRatingsMovie(int MovieID)
         {
 
             string command = "SELECT * FROM rating WHERE MovieID={0};";
-            List<IRatingDto> ratingDtos = new List<IRatingDto>();
+            List<RatingDto> ratingDtos = new List<RatingDto>();
 
             using (MySqlConnection conn = GetConnection())
             {
@@ -89,10 +89,10 @@ namespace DataHandler.Context
             return ratingDtos;
         }
 
-        public IRatingDto GetRating(int movieID)
+        public RatingDto GetRating(int movieID)
         {
             string command = "select * from rating WHERE movieID={0};";
-            IRatingDto ratingDto = new RatingDto();
+            RatingDto ratingDto = new RatingDto();
 
             using (MySqlConnection conn = GetConnection())
             {

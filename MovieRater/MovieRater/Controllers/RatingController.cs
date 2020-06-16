@@ -9,15 +9,16 @@ using MovieRater.Controllers;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using LogicFactory;
-using LogicInterfaces;
+
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
+using Logic;
 
 namespace MovieRater.Controllers
 {
     public class RatingController : Controller
     {
-        private IRating rating;
-        private IRatingCollection ratingCollection;
+        private Rating rating;
+        private RatingCollection ratingCollection;
 
         [HttpGet]
         public IActionResult GetRating(int movieID)

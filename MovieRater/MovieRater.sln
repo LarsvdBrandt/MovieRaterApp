@@ -7,21 +7,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieRater", "MovieRater\Mo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataHandler", "DataHandler\DataHandler.csproj", "{6D46184C-2CC6-4411-880F-F03EA3498DB8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataHandlerFactory", "DataHandlerFactory\DataHandlerFactory.csproj", "{527E832F-8C18-4D95-9C2A-92611E3D5056}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataHandlerInterfaces", "DataHandlerInterfaces\DataHandlerInterfaces.csproj", "{FB77CA96-4957-4921-BAB3-397B623C3BAD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "LOGIC\Logic.csproj", "{40ADB40E-5723-4065-8E33-D74D296FDE30}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicFactory", "LogicFactory\LogicFactory.csproj", "{7D142544-329D-45AE-AC2C-5C31EF616D4D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicInterfaces", "LogicInterfaces\LogicInterfaces.csproj", "{EDEFB27A-B664-4000-B7D7-663F5A859DE5}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieRaterUnitTest", "MovieRaterUnitTest\MovieRaterUnitTest.csproj", "{43DA7B2C-B674-4BB5-B518-903F376BA3C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieRaterMemoryHandler", "MovieRaterMemoryHandler\MovieRaterMemoryHandler.csproj", "{281C9792-AEA9-49FE-A109-30C3F4E1B987}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieRaterMemoryHandler", "MovieRaterMemoryHandler\MovieRaterMemoryHandler.csproj", "{281C9792-AEA9-49FE-A109-30C3F4E1B987}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieRaterMemoryFactory", "MovieRaterMemoryFactory\MovieRaterMemoryFactory.csproj", "{EC5986D8-452A-4BB9-80D3-ACA1B4BE5A6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieRaterMemoryFactory", "MovieRaterMemoryFactory\MovieRaterMemoryFactory.csproj", "{EC5986D8-452A-4BB9-80D3-ACA1B4BE5A6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieRaterDtos", "MovieRaterDtos\MovieRaterDtos.csproj", "{0DE12FD4-6D72-4993-9C66-024779154F3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +35,6 @@ Global
 		{6D46184C-2CC6-4411-880F-F03EA3498DB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D46184C-2CC6-4411-880F-F03EA3498DB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D46184C-2CC6-4411-880F-F03EA3498DB8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{527E832F-8C18-4D95-9C2A-92611E3D5056}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{527E832F-8C18-4D95-9C2A-92611E3D5056}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{527E832F-8C18-4D95-9C2A-92611E3D5056}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{527E832F-8C18-4D95-9C2A-92611E3D5056}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FB77CA96-4957-4921-BAB3-397B623C3BAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FB77CA96-4957-4921-BAB3-397B623C3BAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB77CA96-4957-4921-BAB3-397B623C3BAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -53,10 +47,6 @@ Global
 		{7D142544-329D-45AE-AC2C-5C31EF616D4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D142544-329D-45AE-AC2C-5C31EF616D4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D142544-329D-45AE-AC2C-5C31EF616D4D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EDEFB27A-B664-4000-B7D7-663F5A859DE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EDEFB27A-B664-4000-B7D7-663F5A859DE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EDEFB27A-B664-4000-B7D7-663F5A859DE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EDEFB27A-B664-4000-B7D7-663F5A859DE5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{43DA7B2C-B674-4BB5-B518-903F376BA3C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{43DA7B2C-B674-4BB5-B518-903F376BA3C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43DA7B2C-B674-4BB5-B518-903F376BA3C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,6 +59,10 @@ Global
 		{EC5986D8-452A-4BB9-80D3-ACA1B4BE5A6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC5986D8-452A-4BB9-80D3-ACA1B4BE5A6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC5986D8-452A-4BB9-80D3-ACA1B4BE5A6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DE12FD4-6D72-4993-9C66-024779154F3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DE12FD4-6D72-4993-9C66-024779154F3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DE12FD4-6D72-4993-9C66-024779154F3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DE12FD4-6D72-4993-9C66-024779154F3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

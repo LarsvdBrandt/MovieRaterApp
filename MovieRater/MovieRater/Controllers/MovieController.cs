@@ -9,8 +9,8 @@ using MovieRater.Controllers;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using LogicFactory;
-using LogicInterfaces;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
+using Logic;
 
 namespace MovieRater.Controllers
 {
@@ -20,26 +20,22 @@ namespace MovieRater.Controllers
         private readonly long _fileSizeLimit;
         private string[] permittedExtensions = { ".png", ".jpg", ".jpeg" };
 
-        private IMovie movie;
-        private IMovieCollection movieCollection;
-        private IRating rating;
-        private IRatingCollection ratingCollection;
-        private IWatchList watchList;
-        private IWatchListCollection watchListCollection;
+        private Movie movie;
+        private MovieCollection movieCollection;
+        private Rating rating;
+        private RatingCollection ratingCollection;
+        private WatchList watchList;
+        private WatchListCollection watchListCollection;
 
 
         public MovieController(IWebHostEnvironment environment)
         {
-
             this._environment = environment;
 
-            movie = new Factory().GetMovie();
             movieCollection = new Factory().GetMovieCollection(Context.Database);
 
-            rating = new Factory().GetRating();
             ratingCollection = new Factory().GetRatingCollection();
 
-            watchList = new Factory().GetWatchListMovie();
             watchListCollection = new Factory().GetWatchListCollection();
         }
 
@@ -62,7 +58,7 @@ namespace MovieRater.Controllers
 
             };
 
-            List<IRating> ratings = ratingCollection.GetRatingsMovie(MovieID);
+            List<Rating> ratings = ratingCollection.GetRatingsMovie(MovieID);
             model.Ratings = ratings;
 
             return View(model);
@@ -92,6 +88,8 @@ namespace MovieRater.Controllers
         [HttpPost]
         public async Task<IActionResult> EditMovie(EditMovieViewModel model)
         {
+            movie = new Movie();
+
             if (model.Files != null)
             {
                 var uploads = Path.Combine(_environment.WebRootPath, "Images/Posters");
@@ -115,6 +113,8 @@ namespace MovieRater.Controllers
                 movie.Trailer = model.Trailer;
                 movie.Writers = model.Writers;
                 movie.Director = model.Director;
+
+                movieCollection.EditMovie(movie);
             }
             else
             {
@@ -127,9 +127,11 @@ namespace MovieRater.Controllers
                 movie.Trailer = model.Trailer;
                 movie.Writers = model.Writers;
                 movie.Director = model.Director;
+
+                movieCollection.EditMovie(movie);
             }
 
-            movie.EditMovie();
+            
             return RedirectToAction("EditsuccessPage");
         }
 
@@ -230,7 +232,7 @@ namespace MovieRater.Controllers
         {
             movie = movieCollection.GetMovie(movieID);
 
-            movie.DeleteMovie();
+            movieCollection.DeleteMovie(movie);
 
             return RedirectToAction("EditSuccessPage");
         }
@@ -251,6 +253,7 @@ namespace MovieRater.Controllers
         [HttpPost]
         public IActionResult AddRating(AddRatingViewModel model)
         {
+            rating = new Rating();
             rating.RatingTitle = model.RatingTitle;
             rating.RatingStars = model.RatingStars;
             rating.RatingID = model.RatingID;
@@ -268,6 +271,7 @@ namespace MovieRater.Controllers
         [HttpPost]
         public IActionResult AddWatchList(AddRatingViewModel model)
         {
+            watchList = new WatchList();
             watchList.MovieID = model.MovieID;
 
             int rowcount = watchListCollection.CreateWatchList(watchList);

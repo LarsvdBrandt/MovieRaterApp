@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using LogicInterfaces;
+
 using DataHandlerInterfaces;
-using DataHandlerFactory;
+
 using Microsoft.AspNetCore.Http;
 
 namespace Logic
 {
-    public class WatchList : IWatchList
+    public class WatchList
     {
-        private IWatchListContext db;
         public int MovieID { get; set; }
         public string Poster { get; set; }
         public ICollection<IFormFile> Files { get; set; }
@@ -21,9 +20,5 @@ namespace Logic
         public string Writers { get; set; }
         public string Stars { get; set; }
         public string Director { get; set; }
-        public WatchList()
-        {
-            db = Factory.GetWatchListContext();
-        }
     }
 }

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using DataHandlerInterfaces;
 
-namespace DataHandler.Models
+namespace MovieRaterDtos
 {
-    public class RatingDto : IRatingDto
+    public class RatingDto
     {
         public int RatingID { get; set; }
         public int MovieID { get; set; }
