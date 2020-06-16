@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-using DataHandlerInterfaces;
-
 using Microsoft.AspNetCore.Http;
 
-namespace Logic
+namespace LogicTypes
 {
     public class WatchList
     {

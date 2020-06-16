@@ -9,8 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataHandler\DataHandler.csproj" />
-    <ProjectReference Include="..\LOGIC\Logic.csproj" />
+    <ProjectReference Include="..\MovieRaterDtos\MovieRaterDtos.csproj" />
   </ItemGroup>
 
 </Project>

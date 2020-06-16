@@ -1,7 +1,10 @@
 ﻿using DataHandlerInterfaces;
+using Logic;
+using LogicTypes;
 using MovieRaterDtos;
 using MovieRaterMemoryHandler.DataTypes;
 using MovieRaterMemoryHandler.Tables;
+using MySqlX.XDevAPI.Relational;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -27,17 +30,42 @@ namespace MovieRaterMemoryHandler
 
         public void DeleteMovie(int movieID)
         {
-            throw new NotImplementedException();
+            foreach (DataMovie movie in movieTable.Movies){
+                if(movie.MovieID == movieID)
+                {
+                    movieTable.Movies.Remove(movie);
+                }
+            }
         }
 
-        public void EditMovie(string MovieTitle, string MovieInfo, string MovieSummary, string Poster, string Trailer, string Writers, string Stars, string Director, int MovieID)
+        public void EditMovie(Movie movie)
         {
-            throw new NotImplementedException();
+            foreach(DataMovie dataMovie in movieTable.Movies)
+            {
+                if(dataMovie.MovieID == movie.MovieID)
+                {
+                    dataMovie.MovieTitle = movie.MovieTitle;
+                    dataMovie.Director = movie.Director;
+                    dataMovie.Writers = movie.Writers;
+                    dataMovie.Stars = movie.Stars;
+                    dataMovie.MovieInfo = movie.MovieInfo;
+                    dataMovie.MovieSummary = movie.MovieSummary;
+                    dataMovie.Poster = movie.Poster;
+                    dataMovie.Trailer = movie.Trailer;
+                }
+            }
         }
 
         public MovieDto GetMovie(int movieID)
         {
-            throw new NotImplementedException();
+            foreach(DataMovie dataMovie in movieTable.Movies)
+            {
+                if(dataMovie.MovieID == movieID)
+                {
+                    return dataMovie.ToDto();
+                }
+            }
+            return null;
         }
 
         //door de lijst van memorytable loopen om zo alle films in een lijst te zetten.

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using DataHandlerInterfaces;
 using MovieRaterDtos;
+using LogicTypes;
 
 namespace DataHandler
 {
@@ -87,15 +88,15 @@ namespace DataHandler
                 return rowcount;
             }
         }
-        public void EditMovie(string MovieTitle, string MovieInfo, string MovieSummary, string Poster, string Trailer, string Writers, string Stars, string Director, int MovieID)
+        public void EditMovie(Movie movie)
         {
             string command = "UPDATE movie SET MovieTitle='{1}',MovieInfo='{2}',MovieSummary='{3}',Poster='{4}',Trailer='{5}',Writers='{6}',Stars='{7}',Director='{8}' WHERE MovieID='{9}';";
 
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand(string.Format(command, MovieID, MovieTitle, MovieInfo, MovieSummary,
-                                                    Poster, Trailer, Writers, Stars, Director, MovieID), conn);
+                MySqlCommand cmd = new MySqlCommand(string.Format(command, movie.MovieID, movie.MovieTitle, movie.MovieInfo, movie.MovieSummary,
+                                                    movie.Poster, movie.Trailer, movie.Writers, movie.Stars, movie.Director, movie.MovieID), conn);
                 cmd.ExecuteNonQuery();
             }
         }

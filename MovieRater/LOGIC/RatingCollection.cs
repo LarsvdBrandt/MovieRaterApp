@@ -8,6 +8,7 @@ using DataHandlerInterfaces;
 using System.Linq;
 using MovieRaterDtos;
 using DataHandler;
+using LogicTypes;
 
 namespace Logic
 {

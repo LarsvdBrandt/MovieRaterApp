@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
-using DataHandlerInterfaces;
 
-
-namespace Logic
+namespace LogicTypes
 {
     public class Rating
     {

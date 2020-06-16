@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-using DataHandlerInterfaces;
-
 using Microsoft.AspNetCore.Http;
 using MovieRaterDtos;
 
-namespace Logic
+namespace LogicTypes
 {
     public class Movie
     {

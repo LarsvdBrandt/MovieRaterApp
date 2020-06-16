@@ -5,6 +5,7 @@ using System.Text;
 using DataHandlerInterfaces;
 using System.Linq;
 using MovieRaterDtos;
+using LogicTypes;
 
 namespace Logic
 {
@@ -24,7 +25,6 @@ namespace Logic
         public int CreateMovie(Movie movie)
         {
             MovieDto movieDto = new MovieDto();
-            movieDto.MovieID = movie.MovieID;
             movieDto.MovieTitle = movie.MovieTitle;
             movieDto.MovieSummary = movie.MovieSummary;
             movieDto.Poster = movie.Poster;
@@ -63,7 +63,7 @@ namespace Logic
 
         public void EditMovie(Movie movie)
         {
-            db.EditMovie(movie.MovieTitle, movie.MovieInfo, movie.MovieSummary, movie.Poster, movie.Trailer, movie.Writers, movie.Stars, movie.Director, movie.MovieID);
+            db.EditMovie(movie);
         }
 
         public void DeleteMovie(Movie movie)

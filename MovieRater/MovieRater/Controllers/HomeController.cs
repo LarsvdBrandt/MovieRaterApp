@@ -11,6 +11,7 @@ using LogicFactory;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
 using Logic;
 using MovieRaterMemoryFactory;
+using LogicTypes;
 
 namespace MovieRater.Controllers
 {
@@ -32,7 +33,6 @@ namespace MovieRater.Controllers
             MovieIndexViewModel model = new MovieIndexViewModel();
 
             model.Movies = movies;
-            Test();
 
             return View(model);
         }
@@ -43,12 +43,13 @@ namespace MovieRater.Controllers
             return View(new MovieRater.ViewModels.ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        private void Test()
+        /*private void Test()
         {
             Factory factory = new Factory();
             MovieCollection movieCollection = factory.GetMovieCollection(Context.Memory);
 
-            Movie insertMovie = new Movie()
+            //Setup
+            Movie movie = new Movie()
             {
                 MovieTitle = "Casper",
                 MovieInfo = "MovieInfo",
@@ -59,22 +60,13 @@ namespace MovieRater.Controllers
                 Stars = "stars",
                 Director = "director"
             };
-
-            bool found = false;
+            movieCollection.CreateMovie(movie);
 
             //Action
-            movieCollection.CreateMovie(insertMovie);
+            movieCollection.DeleteMovie(movie);
 
             //Assert
-            foreach (Movie movie in movieCollection.GetMovies())
-            {
-                if (movie.MovieTitle.Equals("Casper"))
-                {
-                    found = true;
-                }
-            }
-            Console.WriteLine(found);
-
-        }
+            Console.WriteLine(movieCollection.GetMovies().Where(m => m.MovieID == movie.MovieID).ToList().Count);
+        }*/
     }
 }

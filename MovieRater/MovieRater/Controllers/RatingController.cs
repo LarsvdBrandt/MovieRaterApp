@@ -12,6 +12,7 @@ using LogicFactory;
 
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
 using Logic;
+using LogicTypes;
 
 namespace MovieRater.Controllers
 {

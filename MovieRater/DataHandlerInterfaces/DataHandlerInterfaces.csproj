@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LogicTypes\LogicTypes.csproj" />
     <ProjectReference Include="..\MovieRaterDtos\MovieRaterDtos.csproj" />
   </ItemGroup>
 

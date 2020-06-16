@@ -1,16 +1,17 @@
 using Logic;
 using LogicFactory;
-
+using LogicTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace MovieRaterUnitTest
 {
     [TestClass]
     public class MovieUnitTest
     {
-        private IMovieCollection movieCollection;
+        private MovieCollection movieCollection;
 
-        private IMovie movie;
+        private Movie movie;
         Factory factory;
 
         //zet line 10 naar moviecollection object
@@ -28,7 +29,7 @@ namespace MovieRaterUnitTest
             //Setup
             Movie insertMovie = new Movie()
             {
-                MovieTitle = "Casper",
+                MovieTitle = "MovieTitle",
                 MovieInfo = "MovieInfo",
                 MovieSummary = "info",
                 Poster = "poster",
@@ -46,7 +47,7 @@ namespace MovieRaterUnitTest
             //Assert
             foreach (Movie movie in movieCollection.GetMovies())
             {
-                if (movie.MovieTitle.Equals("Casper"))
+                if (movie.MovieTitle.Equals("MovieTitle"))
                 {
                     found = true;
                 }
@@ -59,17 +60,12 @@ namespace MovieRaterUnitTest
         public void GetMovie()
         {
             //Setup
-            bool found = false;
 
             //Action
             movie = movieCollection.GetMovie(1);
-            if (movie.MovieTitle == "1917")
-            {
-                found = true;
-            }
 
             //Assert
-            Assert.IsTrue(found);
+            Assert.IsNotNull(movie);
         }
 
         //Test EditMovie
@@ -78,7 +74,7 @@ namespace MovieRaterUnitTest
         {
             //Setup
             bool Edited = false;
-            movie = movieCollection.GetMovie(3);
+            movie = movieCollection.GetMovie(1);
 
             //Action
             movie.MovieID = movie.MovieID;
@@ -91,7 +87,7 @@ namespace MovieRaterUnitTest
             movie.Writers = movie.Writers;
             movie.Director = movie.Director;
 
-            movie.EditMovie();
+            movieCollection.EditMovie(movie);
 
             if (movie.MovieInfo == "TestDataInfo")
             {
@@ -107,7 +103,7 @@ namespace MovieRaterUnitTest
         public void DeleteMovie()
         {
             //Setup
-            Movie insertMovie = new Movie()
+            Movie movie = new Movie()
             {
                 MovieTitle = "Casper",
                 MovieInfo = "MovieInfo",
@@ -119,23 +115,11 @@ namespace MovieRaterUnitTest
                 Director = "director"
             };
 
-            bool Deleted = true;
-            movieCollection.CreateMovie(insertMovie);
-            movie = movieCollection.GetMovie(insertMovie.MovieID);
-
             //Action
-            movie.DeleteMovie();
-
-            foreach (Movie movie in movieCollection.GetMovies())
-            {
-                if (movie.MovieID.Equals(movie.MovieID))
-                {
-                    Deleted = false;
-                }
-            }
+            movieCollection.DeleteMovie(movie);
 
             //Assert
-            Assert.IsTrue(Deleted);
+            Assert.AreEqual(movieCollection.GetMovies().Where(m => m.MovieID == movie.MovieID).ToList().Count, 0);
         }
     }
 }

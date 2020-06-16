@@ -7,6 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DataHandlerInterfaces\DataHandlerInterfaces.csproj" />
     <ProjectReference Include="..\DataHandler\DataHandler.csproj" />
+    <ProjectReference Include="..\LogicTypes\LogicTypes.csproj" />
   </ItemGroup>
 
 </Project>
