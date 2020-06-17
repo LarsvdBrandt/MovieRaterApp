@@ -14,7 +14,7 @@ namespace MovieRaterUnitTest
         private Rating rating;
         Factory factory;
 
-        //zet line 10 naar moviecollection object
+        //zet line 10 naar ratingcollection object
         [TestInitialize]
         public void Setup()
         {
@@ -22,7 +22,7 @@ namespace MovieRaterUnitTest
             ratingCollection = factory.GetRatingCollection(Context.Memory);
         }
 
-        //Test CreateMovie en Getmovies
+        //Test CreateRating en Getratings
         [TestMethod]
         public void CreateRating()
         {
@@ -51,7 +51,7 @@ namespace MovieRaterUnitTest
             Assert.IsTrue(found);
         }
 
-        //Test GetMovie
+        //Test GetRating
         [TestMethod]
         public void GetRating()
         {
@@ -62,6 +62,34 @@ namespace MovieRaterUnitTest
 
             //Assert
             Assert.AreEqual(rating.RatingTitle, "Super mooi");
+        }
+
+        //Test GetRating
+        [TestMethod]
+        public void GetRatingsMovie()
+        {
+            //Setup
+            Rating insertRating = new Rating()
+            {
+                MovieID = 1,
+                RatingTitle = "Super gaaf",
+                RatingStars = 4,
+                RatingComment = "Heel gaaf! Echt een aanrader."
+            };
+
+            bool found = false;
+            //Action
+            ratingCollection.CreateRating(insertRating);
+
+            //Assert
+            foreach (Rating rating in ratingCollection.GetRatingsMovie(1))
+            {
+                if (rating.RatingStars.Equals(4))
+                {
+                    found = true;
+                }
+            }
+            Assert.IsTrue(found);
         }
     }
 }
