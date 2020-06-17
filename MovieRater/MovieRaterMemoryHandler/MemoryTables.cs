@@ -7,10 +7,12 @@ namespace MovieRaterMemoryHandler
     public class MemoryTables
     {
         public TableMovie movies { get; set; } = new TableMovie();
+        public TableRating ratings { get; set; } = new TableRating();
 
         public MemoryTables()
         {
             CreateMovie();
+            CreateRating();
         }
 
         //Zet default film in de table
@@ -18,14 +20,26 @@ namespace MovieRaterMemoryHandler
         {
             movies.Insert(new DataMovie()
             {
-                MovieTitle = "Title",
+                MovieTitle = "1917",
                 MovieInfo = "MovieInfo",
-                MovieSummary = "info",
-                Poster = "poster",
-                Trailer = "trailer",
-                Writers = "writers",
-                Stars = "stars",
-                Director = "director"
+                MovieSummary = "1917 is een Amerikaans-Britse oorlogsfilm uit 2019 onder regie van Sam Mendes. De hoofdrollen worden vertolkt door Dean-Charles Chapman en George MacKay.",
+                Poster = "1917.jpg",
+                Trailer = "https://www.youtube.com/embed/YqNYrYUiMfg",
+                Writers = "Sam Mendes, Krysty Wilson-Cairns",
+                Stars = "Dean-Charles Chapman, George MacKay, Daniel Mays",
+                Director = "Sam Mendes"
+            });
+        }
+
+        //Zet default rating in de table
+        private void CreateRating()
+        {
+            ratings.Insert(new DataRating()
+            {
+                MovieID = 1,
+                RatingStars = 4,
+                RatingTitle = "Super mooi",
+                RatingComment = "Uitstekende film, ik heb ervan genoten."
             });
         }
     }

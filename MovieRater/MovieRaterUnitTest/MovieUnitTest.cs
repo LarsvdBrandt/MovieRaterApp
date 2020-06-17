@@ -29,14 +29,14 @@ namespace MovieRaterUnitTest
             //Setup
             Movie insertMovie = new Movie()
             {
-                MovieTitle = "MovieTitle",
-                MovieInfo = "MovieInfo",
-                MovieSummary = "info",
-                Poster = "poster",
-                Trailer = "trailer",
-                Writers = "writers",
-                Stars = "stars",
-                Director = "director"
+                MovieTitle = "MySpy",
+                MovieInfo = "Info",
+                MovieSummary = "My Spy is een Amerikaanse actie-komedie uit 2020, geregisseerd door Peter Segal, geschreven door Jon en Erich Hoeber, met in de hoofdrollen Dave Bautista, Chloe Coleman, Kristen Schaal en Ken Jeong. De film volgt een CIA-agent die moet waken over een jong meisje nadat hij is toegewezen om haar familie te beschermen.",
+                Poster = "MySpy.jpg",
+                Trailer = "https://www.youtube.com/embed/vOUVVDWdXbo",
+                Writers = "Jeff Wadlow (screenplay by), Eric Heisserer (screenplay by)",
+                Stars = "Vin Diesel, Eiza González, Sam Heughan",
+                Director = "Dave Wilson (as David S.F. Wilson)"
             };
 
             bool found = false;
@@ -47,7 +47,7 @@ namespace MovieRaterUnitTest
             //Assert
             foreach (Movie movie in movieCollection.GetMovies())
             {
-                if (movie.MovieTitle.Equals("MovieTitle"))
+                if (movie.MovieTitle.Equals("MySpy"))
                 {
                     found = true;
                 }
@@ -65,7 +65,7 @@ namespace MovieRaterUnitTest
             movie = movieCollection.GetMovie(1);
 
             //Assert
-            Assert.IsNotNull(movie);
+            Assert.AreEqual(movie.MovieTitle, "1917");
         }
 
         //Test EditMovie
@@ -78,8 +78,8 @@ namespace MovieRaterUnitTest
 
             //Action
             movie.MovieID = movie.MovieID;
-            movie.MovieTitle = movie.MovieTitle;
-            movie.MovieInfo = "TestDataInfo";
+            movie.MovieTitle = "1918";
+            movie.MovieInfo = movie.MovieInfo;
             movie.MovieSummary = movie.MovieSummary;
             movie.Poster = movie.Poster;
             movie.Stars = movie.Stars;
@@ -89,7 +89,7 @@ namespace MovieRaterUnitTest
 
             movieCollection.EditMovie(movie);
 
-            if (movie.MovieInfo == "TestDataInfo")
+            if (movie.MovieTitle == "1918")
             {
                 Edited = true;
             }
@@ -105,14 +105,14 @@ namespace MovieRaterUnitTest
             //Setup
             Movie movie = new Movie()
             {
-                MovieTitle = "Casper",
-                MovieInfo = "MovieInfo",
-                MovieSummary = "info",
-                Poster = "poster",
-                Trailer = "trailer",
-                Writers = "writers",
-                Stars = "stars",
-                Director = "director"
+                MovieTitle = "MySpy",
+                MovieInfo = "Info",
+                MovieSummary = "My Spy is een Amerikaanse actie-komedie uit 2020, geregisseerd door Peter Segal, geschreven door Jon en Erich Hoeber, met in de hoofdrollen Dave Bautista, Chloe Coleman, Kristen Schaal en Ken Jeong. De film volgt een CIA-agent die moet waken over een jong meisje nadat hij is toegewezen om haar familie te beschermen.",
+                Poster = "MySpy.jpg",
+                Trailer = "https://www.youtube.com/embed/vOUVVDWdXbo",
+                Writers = "Jeff Wadlow (screenplay by), Eric Heisserer (screenplay by)",
+                Stars = "Vin Diesel, Eiza González, Sam Heughan",
+                Director = "Dave Wilson (as David S.F. Wilson)"
             };
 
             //Action

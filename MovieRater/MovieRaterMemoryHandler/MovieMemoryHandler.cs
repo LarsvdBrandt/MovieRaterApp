@@ -76,7 +76,6 @@ namespace MovieRaterMemoryHandler
             {
                 movieDtos.Add(movie.ToDto());
             }
-            Console.WriteLine(movieDtos.Count);
             return movieDtos;
         }
     }

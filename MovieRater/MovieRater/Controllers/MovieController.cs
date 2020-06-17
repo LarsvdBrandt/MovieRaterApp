@@ -35,7 +35,7 @@ namespace MovieRater.Controllers
 
             movieCollection = new Factory().GetMovieCollection(Context.Database);
 
-            ratingCollection = new Factory().GetRatingCollection();
+            ratingCollection = new Factory().GetRatingCollection(Context.Database);
 
             watchListCollection = new Factory().GetWatchListCollection();
         }

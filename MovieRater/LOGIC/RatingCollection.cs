@@ -15,9 +15,16 @@ namespace Logic
     public class RatingCollection
     {
         private IRatingContext db;
-        private List<Rating> ratings;
 
-        public RatingCollection()
+        //UNIT TEST
+        //Hier zet ik de ratingcontext in.
+        //Ga door RatingMemoryHandler 
+        public RatingCollection(IRatingContext context)
+        {
+            this.db = context;
+        }
+
+        /*public RatingCollection()
         {
             db = new RatingContext();
             ratings = new List<Rating>();
@@ -33,7 +40,7 @@ namespace Logic
                     RatingComment = ratingDto.RatingComment
                 });
             }
-        }
+        }*/
 
         public int CreateRating(Rating rating)
         {
@@ -50,16 +57,37 @@ namespace Logic
 
         public List<Rating> GetRatings()
         {
+            List<Rating> ratings = new List<Rating>();
+            List<RatingDto> ratingDtos = db.GetRatings();
+            foreach (RatingDto rating in ratingDtos)
+            {
+                ratings.Add(new Rating(rating));
+            }
+
             return ratings;
         }        
         
         public List<Rating> GetRatingsMovie(int movieID)
         {
+            List<Rating> ratings = new List<Rating>();
+            List<RatingDto> ratingDtos = db.GetRatings();
+            foreach (RatingDto ratingDto in ratingDtos)
+            {
+                ratings.Add(new Rating(ratingDto));
+            }
+
             return ratings.Where(model => model.MovieID == movieID).ToList();
         }
 
         public Rating GetRating(int movieID)
         {
+            List<Rating> ratings = new List<Rating>();
+            List<RatingDto> ratingDtos = db.GetRatings();
+            foreach (RatingDto ratingDto in ratingDtos)
+            {
+                ratings.Add(new Rating(ratingDto));
+            }
+
             return ratings.Where(model => model.MovieID == movieID).FirstOrDefault();
         }
 

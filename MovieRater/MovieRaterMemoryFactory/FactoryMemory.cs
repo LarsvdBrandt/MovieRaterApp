@@ -22,5 +22,11 @@ namespace MovieRaterMemoryFactory
             return new MovieCollection(new MovieMemoryHandler(tables));
         }
 
+        //ga naar ratingCollection
+        public RatingCollection CreateRatingCollection()
+        {
+            return new RatingCollection(new RatingMemoryHandler(tables));
+        }
+
     }
 }

@@ -34,9 +34,17 @@ namespace LogicFactory
             }
         }
 
-        public RatingCollection GetRatingCollection()
+        public RatingCollection GetRatingCollection(Context context)
         {
-            return new RatingCollection();
+            switch (context)
+            {
+                case Context.Database:
+                    return new RatingCollection(new RatingContext());
+                case Context.Memory:
+                    return new RatingCollection(new RatingMemoryHandler(tables));
+                default:
+                    return new RatingCollection(new RatingContext());
+            }
         }
 
         public WatchListCollection GetWatchListCollection()
