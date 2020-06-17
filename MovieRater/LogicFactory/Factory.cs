@@ -16,9 +16,17 @@ namespace LogicFactory
             tables = new MemoryTables();
         }
 
-        public AccountCollection GetAccountCollection()
+        public AccountCollection GetAccountCollection(Context context)
         {
-            return new AccountCollection();
+            switch (context)
+            {
+                case Context.Database:
+                    return new AccountCollection(new AccountContext());
+                case Context.Memory:
+                    return new AccountCollection(new AccountMemoryHandler(tables));
+                default:
+                    return new AccountCollection(new AccountContext());
+            }
         }
 
         public MovieCollection GetMovieCollection(Context context)

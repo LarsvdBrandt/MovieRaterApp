@@ -14,25 +14,13 @@ namespace Logic
     {
 
         private IAccountContext db;
-        private List<Account> accounts;
-        public AccountCollection()
+
+        //UNIT TEST
+        //Hier zet ik de moviecontext in.
+        //Ga door MovieMemoryHandler 
+        public AccountCollection(IAccountContext context)
         {
-            db = new AccountContext();
-            accounts = new List<Account>();
-            List<AccountDto> accountDtos = db.GetAccounts();
-            foreach (AccountDto accountDto in accountDtos)
-            {
-                accounts.Add(new Account()
-                {
-                    UserID = accountDto.UserID,
-                    UserName = accountDto.UserName,
-                    FirstName = accountDto.FirstName,
-                    LastName = accountDto.LastName,
-                    Email = accountDto.Email,
-                    PhoneNumber = accountDto.PhoneNumber,
-                    Password = accountDto.Password
-                });
-            }
+            this.db = context;
         }
 
         public int CreateAccount(Account account)
@@ -52,11 +40,25 @@ namespace Logic
 
         public List<Account> GetAccounts()
         {
+            List<Account> accounts = new List<Account>();
+            List<AccountDto> accountDtos = db.GetAccounts();
+            foreach (AccountDto account in accountDtos)
+            {
+                accounts.Add(new Account(account));
+            }
             return accounts;
         }
 
         public Account GetAccount(string UserName)
         {
+            List<Account> accounts = new List<Account>();
+
+            List<AccountDto> accountDtos = db.GetAccounts();
+            foreach (AccountDto accountDto in accountDtos)
+            {
+                accounts.Add(new Account(accountDto));
+            }
+
             return accounts.Where(model => model.UserName == UserName).FirstOrDefault();
         }
     }

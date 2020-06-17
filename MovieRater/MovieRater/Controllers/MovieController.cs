@@ -136,22 +136,6 @@ namespace MovieRater.Controllers
             return RedirectToAction("EditsuccessPage");
         }
 
-        /*[HttpPost]
-        public IActionResult EditMovie(EditMovieViewModel model)
-        {
-            movie.MovieID = model.MovieID;
-            movie.MovieInfo = model.MovieInfo;
-            movie.MovieSummary = model.MovieSummary;
-            movie.MovieTitle = model.MovieTitle;
-            movie.Stars = model.Stars;
-            movie.Trailer = model.Trailer;
-            movie.Writers = model.Writers;
-            movie.Director = model.Director;
-
-            movie.EditMovie();
-            return RedirectToAction("EditsuccessPage");
-        }*/
-
         [HttpPost]
         public async Task<IActionResult> AddMovie(AddMovieViewModel model)
         {
@@ -184,28 +168,6 @@ namespace MovieRater.Controllers
             else
                 return RedirectToAction("FailPage");
         }
-
-
-        /*[HttpPost]
-        public IActionResult AddMovie(AddMovieViewModel model)
-        {
-            movie.MovieID = model.MovieID;
-            movie.Poster = model.Poster;
-            movie.MovieInfo = model.MovieInfo;
-            movie.MovieSummary = model.MovieSummary;
-            movie.MovieTitle = model.MovieTitle;
-            movie.Stars = model.Stars;
-            movie.Trailer = model.Trailer;
-            movie.Writers = model.Writers;
-            movie.Director = model.Director;
-
-            int rowcount = movieCollection.CreateMovie(movie);
-
-            if (rowcount == 1)
-                return RedirectToAction("EditSuccessPage");
-            else
-                return RedirectToAction("FailPage");
-        }*/
 
         [HttpGet]
         public IActionResult DeleteMoviePage(int movieID)

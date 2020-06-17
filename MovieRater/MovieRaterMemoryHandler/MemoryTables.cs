@@ -8,11 +8,13 @@ namespace MovieRaterMemoryHandler
     {
         public TableMovie movies { get; set; } = new TableMovie();
         public TableRating ratings { get; set; } = new TableRating();
+        public TableAccount accounts { get; set; } = new TableAccount();
 
         public MemoryTables()
         {
             CreateMovie();
             CreateRating();
+            CreateAccount();
         }
 
         //Zet default film in de table
@@ -40,6 +42,20 @@ namespace MovieRaterMemoryHandler
                 RatingStars = 4,
                 RatingTitle = "Super mooi",
                 RatingComment = "Uitstekende film, ik heb ervan genoten."
+            });
+        }
+
+        //Zet default account in de table
+        private void CreateAccount()
+        {
+            accounts.Insert(new DataAccount()
+            {
+                UserName = "LarsvdB",
+                FirstName = "Lars",
+                LastName = "van den Brandt",
+                Email = "Lars.vandenBrandt@me.com",
+                PhoneNumber = 0636484221,
+                Password = "W8woordT3st"
             });
         }
     }

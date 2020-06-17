@@ -24,12 +24,14 @@ namespace MovieRater.Controllers
 
         public AccountController( )
         {
-            accountCollection = new Factory().GetAccountCollection();
+            accountCollection = new Factory().GetAccountCollection(Context.Database);
         }
 
         [HttpPost]
         public async Task<IActionResult> AddAccount(AddAccountViewModel model)
         {
+            account = new Account();
+
             account.UserID = model.UserID;
             account.UserName = model.UserName;
             account.FirstName = model.FirstName;

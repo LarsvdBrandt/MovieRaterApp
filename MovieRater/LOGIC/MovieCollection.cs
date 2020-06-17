@@ -15,7 +15,6 @@ namespace Logic
 
         //UNIT TEST
         //Hier zet ik de moviecontext in.
-        //Eventueel later deze 2 moviecollections 1 maken zodat de code wat "Netter is"
         //Ga door MovieMemoryHandler 
         public MovieCollection(IMovieContext context)
         {

@@ -53,7 +53,7 @@ namespace MovieRaterUnitTest
 
         //Test GetMovie
         [TestMethod]
-        public void GetMovie()
+        public void GetRating()
         {
             //Setup
 
