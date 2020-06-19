@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LOGIC\Logic.csproj" />
-    <ProjectReference Include="..\MovieRaterMemoryHandler\MovieRaterMemoryHandler.csproj" />
+    <ProjectReference Include="..\MovieRaterMemoryHandler\MovieRaterRepositoryHandler.csproj" />
   </ItemGroup>
 
 </Project>

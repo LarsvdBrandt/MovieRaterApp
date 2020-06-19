@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataHandlerInterfaces\DataHandlerInterfaces.csproj" />
-    <ProjectReference Include="..\DataHandler\DataHandler.csproj" />
+    <ProjectReference Include="..\DataHandlerInterfaces\DataRepositoryInterfaces.csproj" />
+    <ProjectReference Include="..\DataHandler\DataRepository.csproj" />
     <ProjectReference Include="..\LogicTypes\LogicTypes.csproj" />
   </ItemGroup>
 

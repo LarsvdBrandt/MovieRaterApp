@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataHandler\DataHandler.csproj" />
+    <ProjectReference Include="..\DataHandler\DataRepository.csproj" />
     <ProjectReference Include="..\LOGIC\Logic.csproj" />
   </ItemGroup>
 

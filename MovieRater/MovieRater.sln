@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieRater", "MovieRater\MovieRater.csproj", "{B13720DA-1C87-46BA-ACC0-9270ADFE7954}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataHandler", "DataHandler\DataHandler.csproj", "{6D46184C-2CC6-4411-880F-F03EA3498DB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataRepository", "DataHandler\DataRepository.csproj", "{6D46184C-2CC6-4411-880F-F03EA3498DB8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataHandlerInterfaces", "DataHandlerInterfaces\DataHandlerInterfaces.csproj", "{FB77CA96-4957-4921-BAB3-397B623C3BAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataRepositoryInterfaces", "DataHandlerInterfaces\DataRepositoryInterfaces.csproj", "{FB77CA96-4957-4921-BAB3-397B623C3BAD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "LOGIC\Logic.csproj", "{40ADB40E-5723-4065-8E33-D74D296FDE30}"
 EndProject
@@ -15,13 +15,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicFactory", "LogicFactor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieRaterUnitTest", "MovieRaterUnitTest\MovieRaterUnitTest.csproj", "{43DA7B2C-B674-4BB5-B518-903F376BA3C9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieRaterMemoryHandler", "MovieRaterMemoryHandler\MovieRaterMemoryHandler.csproj", "{281C9792-AEA9-49FE-A109-30C3F4E1B987}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieRaterRepositoryHandler", "MovieRaterMemoryHandler\MovieRaterRepositoryHandler.csproj", "{281C9792-AEA9-49FE-A109-30C3F4E1B987}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieRaterMemoryFactory", "MovieRaterMemoryFactory\MovieRaterMemoryFactory.csproj", "{EC5986D8-452A-4BB9-80D3-ACA1B4BE5A6E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieRaterDtos", "MovieRaterDtos\MovieRaterDtos.csproj", "{0DE12FD4-6D72-4993-9C66-024779154F3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicTypes", "LogicTypes\LogicTypes.csproj", "{A6D2FBE5-0346-49B1-9A5E-C9B6ACE104DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicTypes", "LogicTypes\LogicTypes.csproj", "{A6D2FBE5-0346-49B1-9A5E-C9B6ACE104DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

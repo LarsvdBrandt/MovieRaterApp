@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataHandlerInterfaces\DataHandlerInterfaces.csproj" />
+    <ProjectReference Include="..\DataHandlerInterfaces\DataRepositoryInterfaces.csproj" />
     <ProjectReference Include="..\MovieRaterDtos\MovieRaterDtos.csproj" />
   </ItemGroup>
 

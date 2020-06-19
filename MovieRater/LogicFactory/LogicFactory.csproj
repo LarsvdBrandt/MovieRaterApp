@@ -5,9 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataHandler\DataHandler.csproj" />
+    <ProjectReference Include="..\DataHandler\DataRepository.csproj" />
     <ProjectReference Include="..\LOGIC\Logic.csproj" />
-    <ProjectReference Include="..\MovieRaterMemoryHandler\MovieRaterMemoryHandler.csproj" />
+    <ProjectReference Include="..\MovieRaterMemoryHandler\MovieRaterRepositoryHandler.csproj" />
   </ItemGroup>
 
 </Project>
