@@ -54,7 +54,7 @@ namespace MovieRater.Controllers
             return View();
         }
 
-        public IActionResult RegisterSuccessPage()
+        public IActionResult RegistrationSuccessPage()
         {
             return View();
         }
