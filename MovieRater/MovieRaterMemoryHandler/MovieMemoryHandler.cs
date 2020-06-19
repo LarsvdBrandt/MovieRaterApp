@@ -11,7 +11,7 @@ using System.Text;
 
 namespace MovieRaterMemoryHandler
 {
-    public class MovieMemoryHandler : IMovieContext
+    public class MovieMemoryHandler : IMovieRepository
     {
         public string ConnectionString { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         private TableMovie movieTable;

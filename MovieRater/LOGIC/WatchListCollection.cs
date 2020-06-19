@@ -12,7 +12,7 @@ namespace Logic
 {
     public class WatchListCollection
     {
-        private IWatchListContext db;
+        private IWatchListRepository db;
         private List<WatchList> watchLists;
 
         public WatchListCollection()

@@ -7,7 +7,7 @@ using MovieRaterDtos;
 
 namespace DataHandler
 {
-    public class AccountContext : IAccountContext
+    public class AccountContext : IAccountRepository
     {
         public string ConnectionString { get; set; }
 

@@ -7,7 +7,7 @@ using LogicTypes;
 
 namespace DataHandler
 {
-    public class MovieContext : IMovieContext
+    public class MovieContext : IMovieRepository
     {
         public string ConnectionString { get; set; }
         public MovieContext()

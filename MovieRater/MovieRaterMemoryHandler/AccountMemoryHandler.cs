@@ -11,7 +11,7 @@ using System.Text;
 
 namespace MovieRaterMemoryHandler
 {
-    public class AccountMemoryHandler : IAccountContext
+    public class AccountMemoryHandler : IAccountRepository
     {
         public string ConnectionString { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         private TableAccount accountTable;

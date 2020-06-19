@@ -13,12 +13,12 @@ namespace Logic
     public class AccountCollection
     {
 
-        private IAccountContext db;
+        private IAccountRepository db;
 
         //UNIT TEST
         //Hier zet ik de moviecontext in.
         //Ga door MovieMemoryHandler 
-        public AccountCollection(IAccountContext context)
+        public AccountCollection(IAccountRepository context)
         {
             this.db = context;
         }

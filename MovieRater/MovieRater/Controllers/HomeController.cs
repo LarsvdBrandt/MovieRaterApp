@@ -29,7 +29,6 @@ namespace MovieRater.Controllers
         public IActionResult Index()
         {
             List<Movie> movies = movieCollection.GetMovies();
-            Console.WriteLine("Hallo " + movies.Count);
             MovieIndexViewModel model = new MovieIndexViewModel();
 
             model.Movies = movies;

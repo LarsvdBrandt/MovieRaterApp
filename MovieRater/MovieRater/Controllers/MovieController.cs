@@ -139,6 +139,7 @@ namespace MovieRater.Controllers
         [HttpPost]
         public async Task<IActionResult> AddMovie(AddMovieViewModel model)
         {
+            movie = new Movie();
             var uploads = Path.Combine(_environment.WebRootPath, "Images/Posters");
             foreach (var file in model.Files)
             {
@@ -275,6 +276,24 @@ namespace MovieRater.Controllers
             return View();
         }
 
+        public IActionResult MoviesPage(string id)
+        {
+            List<Movie> movies = new List<Movie>(); 
+            MovieIndexViewModel model = new MovieIndexViewModel();
+
+            if (!String.IsNullOrEmpty(id))
+            {
+                movies = movieCollection.GetMovies().Where(s => s.MovieTitle.Contains(id)).ToList();
+            }
+            else
+            {
+                movies = movieCollection.GetMovies();
+            }
+
+            model.Movies = movies;
+
+            return View(model);
+        }
     }
 
 }

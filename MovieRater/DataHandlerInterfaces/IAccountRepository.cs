@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DataHandlerInterfaces
 {
-    public interface IAccountContext
+    public interface IAccountRepository
     {
         string ConnectionString { get; set; }
 

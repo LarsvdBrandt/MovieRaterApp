@@ -7,7 +7,7 @@ using MovieRaterDtos;
 
 namespace DataHandler
 {
-    public class WatchListContext : IWatchListContext
+    public class WatchListContext : IWatchListRepository
     {
         public string ConnectionString { get; set; }
 

@@ -1,0 +1,13 @@
+﻿@model MovieRater.ViewModels.MovieIndexViewModel
+@{
+    ViewData["Title"] = "Movies";
+}
+
+<h1>MoviesPage</h1>
+@foreach (var item in Model.Movies)
+{
+    <div class="carouselImage" style="background-size:cover;">
+        <a href='@string.Format("/Movie/MoviePage?MovieID={0}", item.MovieID)'><img data-tab="bright" class="rounded" src=/Images/Posters/@item.Poster alt="Poster"></a>
+    </div>
+}
+

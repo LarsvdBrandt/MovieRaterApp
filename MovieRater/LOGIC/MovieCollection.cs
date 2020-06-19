@@ -11,12 +11,12 @@ namespace Logic
 {
     public class MovieCollection
     {
-        private IMovieContext db;
+        private IMovieRepository db;
 
         //UNIT TEST
         //Hier zet ik de moviecontext in.
         //Ga door MovieMemoryHandler 
-        public MovieCollection(IMovieContext context)
+        public MovieCollection(IMovieRepository context)
         {
             this.db = context;
         }

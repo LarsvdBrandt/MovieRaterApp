@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DataHandlerInterfaces
 {
-    public interface IWatchListContext
+    public interface IWatchListRepository
     {
         string ConnectionString { get; set; }
         int CreateWatchList(WatchListDto watchListDto);

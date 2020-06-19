@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DataHandlerInterfaces
 {
-    public interface IMovieContext
+    public interface IMovieRepository
     {
         string ConnectionString { get; set; }
 
